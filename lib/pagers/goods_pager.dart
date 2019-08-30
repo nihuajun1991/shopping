@@ -7,6 +7,7 @@ import 'package:shopping/bean/tabbar_bean.dart';
 import 'package:shopping/pagers/home_page.dart';
 import 'package:shopping/service/service_method.dart';
 import '../view/loading_dialog.dart';
+import '../view/myappbar.dart';
 import 'category_page.dart';
 
 class GoodsPager extends StatefulWidget {
@@ -29,7 +30,7 @@ class _GoodsPagerState extends State<GoodsPager>
   void initState() {
     _getTabs();
      FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
-     FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
@@ -46,7 +47,8 @@ class _GoodsPagerState extends State<GoodsPager>
    @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
       if (state == AppLifecycleState.resumed) {
-     // FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+     FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     }
     print("state:{$state}");
     super.didChangeAppLifecycleState(state);
@@ -58,8 +60,35 @@ class _GoodsPagerState extends State<GoodsPager>
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar: AppBar(
-        title: Text("百姓生活+"),
+      appBar: MAppBar(
+        child: InkWell(
+          onTap: () {
+            print("点击搜索框");
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.black12,
+                 //阴影颜色
+                    blurRadius: 2.0, //阴影大小
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(18),
+                border: Border(
+                    // top:BorderSide(width: 0.5, color: Colors.black) ,
+                    // bottom: BorderSide(width: 0.5, color: Colors.black),
+                    )),
+            margin: EdgeInsets.all(5),
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.search,
+              color: Colors.pink,
+              size: ScreenUtil().setHeight(28),
+            ),
+          ),
+        ),
       ),
       body: _isLoadOk(),
     );

@@ -23,7 +23,8 @@ class GoodsDetail extends StatefulWidget {
       _GoodsDetailState(data: data, juanjia: juanjia);
 }
 
-class _GoodsDetailState extends State<GoodsDetail> {
+class _GoodsDetailState extends State<GoodsDetail>
+with SingleTickerProviderStateMixin,WidgetsBindingObserver {
   static const platform = const MethodChannel('samples.flutter.io/battery');
   var text;
   final Data data;
@@ -34,6 +35,16 @@ class _GoodsDetailState extends State<GoodsDetail> {
 
   NTbkItem nTbkItem;
  String _batteryLevel = 'Unknown battery level.';
+
+ @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+      if (state == AppLifecycleState.resumed) {
+     FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    }
+    print("state:{$state}");
+    super.didChangeAppLifecycleState(state);
+  }
 
  Future<Null> _getBatteryLevel() async {
     String batteryLevel;
@@ -83,7 +94,7 @@ class _GoodsDetailState extends State<GoodsDetail> {
   void dispose() {
     //changeStatusColor(Colors.transparent);
     //FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
-    FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     print("dispose");
     super.dispose();
   }

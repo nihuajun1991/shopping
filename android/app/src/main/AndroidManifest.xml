@@ -14,9 +14,9 @@ xmlns:tools="http://schemas.android.com/tools"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher">
  <!--  -->
-          <!-- <uses-library
+          <uses-library
                 android:name="org.apache.http.legacy"
-                android:required="false" /> -->
+                android:required="false" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
