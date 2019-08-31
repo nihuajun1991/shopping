@@ -34,7 +34,7 @@ with SingleTickerProviderStateMixin,WidgetsBindingObserver {
   var detailHtml;
 
   NTbkItem nTbkItem;
- String _batteryLevel = 'Unknown battery level.';
+ String _batteryLevel = '.';
 
  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -49,10 +49,10 @@ with SingleTickerProviderStateMixin,WidgetsBindingObserver {
  Future<Null> _getBatteryLevel() async {
     String batteryLevel;
     try {
-      final String result = await platform.invokeMethod('getBatteryLevel',{"id": "679405046",});
-      batteryLevel = 'Battery level at $result % .';
+      final String result = await platform.invokeMethod('lingjuan',{"id": data.taobaoId,});
+      batteryLevel = '$result % .';
     } on PlatformException catch (e) {
-      batteryLevel = "Failed to get battery level: '${e.message}'.";
+      batteryLevel = "'${e.message}'.";
     }
 
     setState(() {

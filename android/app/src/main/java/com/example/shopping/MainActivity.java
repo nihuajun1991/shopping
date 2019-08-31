@@ -23,6 +23,7 @@ import com.alibaba.baichuan.android.trade.model.AlibcShowParams;
 import com.alibaba.baichuan.android.trade.model.OpenType;
 import android.util.Log;
 import java.util.HashMap;
+import android.widget.Toast;
 
 public class MainActivity extends FlutterActivity {
 private static  final  String TAG= "MainActivity";
@@ -37,8 +38,17 @@ private static  final  String TAG= "MainActivity";
       new MethodCallHandler(){
         @Override
         public void onMethodCall(MethodCall call, Result result) {
-          if (call.method.equals("getBatteryLevel")) {  
-           showTaobaoDetail(MainActivity.this,"571395305551");
+          if (call.method.equals("lingjuan")) {  
+            try{
+             // result.success("571395305551");
+                if(call.argument("id")!=null){
+                    showTaobaoDetail(MainActivity.this,call.argument("id"));
+                }
+
+            }catch(Exception e){
+               Toast.makeText(MainActivity.this,"aaaa",Toast.LENGTH_SHORT).show();
+            }
+           
              //result.success("571395305551");
         } else {
             result.notImplemented();
@@ -73,7 +83,7 @@ private static  final  String TAG= "MainActivity";
         alibcTaokeParams.pid = "mm_46748349_644650418_109217350018";
         alibcTaokeParams.subPid = "mm_46748349_644650418_109217350018";
         alibcTaokeParams.extraParams = new HashMap();
-        alibcTaokeParams.extraParams.put("taokeAppkey","27863805");
+        alibcTaokeParams.extraParams.put("taokeAppkey","27708881");
         AlibcTrade.show(
                 activity,
                 alibcBasePage,

@@ -37,20 +37,18 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.shopping"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        // ndk {
-        //     //选择要添加的对应cpu类型的.so库。
-        //     abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a','x86', 'x86_64', 'mips', 'mips64'
-        //     // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
-        // }
-        // multiDexEnabled true
+        ndk {
+            abiFilters  "armeabi","arm64-v8a","armeabi-v7a","x86","x86_64"
+        }
+         multiDexEnabled true
     }
 
-    
+
 signingConfigs {
     release {
         keyAlias keystoreProperties['keyAlias']
@@ -62,7 +60,24 @@ signingConfigs {
 buildTypes {
     release {
         signingConfig signingConfigs.release
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters  "armeabi","arm64-v8a","armeabi-v7a","x86","x86_64"
+
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
     }
+    debug {
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+//                abiFilters "armeabi-v7a"
+            abiFilters  "armeabi","arm64-v8a","armeabi-v7a","x86","x86_64"
+            // 还可以添加
+        }
+        minifyEnabled false
+        signingConfig signingConfigs.release
+    }
+
 }
 
 flutter {
@@ -81,18 +96,21 @@ repositories {
 }
 
 dependencies {
-    
+
     testImplementation 'junit:junit:4.12'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //implementation ''
+    implementation 'com.alibaba:fastjson:1.2.9'
 
     //登陆
     implementation 'com.ali.auth.sdk:alibabauth_core:1.4.3@jar'
     implementation 'com.ali.auth.sdk:alibabauth_ui:1.4.3@aar'
     implementation 'com.ali.auth.sdk:alibabauth_ext:1.4.3@jar'
     //安全基础
-    implementation 'com.taobao.android:securityguardaar3:5.1.81@aar'
+   // implementation 'com.taobao.android:securityguardaar3:5.1.81@aar'
+    //implementation 'com.taobao.android:securitybodyaar3-5.1.25@aarr'
     //Mtop网关
     implementation 'com.taobao.android:mtopsdk_allinone_open:1.2.2.4@jar'
     //applink
@@ -108,4 +126,9 @@ dependencies {
     implementation 'com.alibaba.sdk.android:alibc_trade_sdk:3.1.1.206'
     implementation 'com.android.support:multidex:1.0.1'
 }
+}
+
+dependencies {
+    implementation files('src\\main\\libs\\securityguardaar3-5.1.81.aar')
+    implementation 'com.android.support:support-v4:28.0.0'
 }
