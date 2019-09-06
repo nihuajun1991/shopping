@@ -1,5 +1,9 @@
 package com.example.shopping;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import io.flutter.app.FlutterActivity;
@@ -27,7 +31,7 @@ import android.widget.Toast;
 
 public class MainActivity extends FlutterActivity {
 private static  final  String TAG= "MainActivity";
-  private static final String CHANNEL = "samples.flutter.io/battery";
+  private static final String CHANNEL = "lingjuan/channel";
   private static final String TAOBAO = "taobao";
 
   @Override
@@ -42,7 +46,18 @@ private static  final  String TAG= "MainActivity";
             try{
              // result.success("571395305551");
                 if(call.argument("id")!=null){
-                    showTaobaoDetail(MainActivity.this,call.argument("id"));
+                    //showTaobaoDetail(MainActivity.this,call.argument("id"));
+                    String url2 = call.argument("id");
+                    Log.d(TAG,url2);
+                    if (isAppInstalled(MainActivity.this, "com.taobao.taobao")) {
+                        Intent intent2 = getPackageManager().getLaunchIntentForPackage("com.taobao.taobao"); //这行代码比较重要
+                        intent2.setAction("android.intent.action.VIEW");
+                        intent2.setClassName("com.taobao.taobao", "com.taobao.browser.BrowserActivity");
+                        Uri uri = Uri.parse(url2);
+                        intent2.setData(uri);
+                        startActivity(intent2);
+                    }
+
                 }
 
             }catch(Exception e){
@@ -57,6 +72,20 @@ private static  final  String TAG= "MainActivity";
       }
     );
   }
+
+
+
+    private boolean isAppInstalled(Context context, String uri) {
+        PackageManager pm = context.getPackageManager();
+        boolean installed = false;
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            installed = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            installed = false;
+        }
+        return installed;
+    }
 
  private void showDetailPage(Activity activity , String id ,String type ){
         AlibcShowParams alibcShowParams = null;
@@ -79,9 +108,9 @@ private static  final  String TAG= "MainActivity";
         exParams.put(AlibcConstants.ISV_CODE, "appisvcode");
         AlibcTaokeParams alibcTaokeParams =new AlibcTaokeParams();
         // adzoneid 为mm_memberId_siteId_adzoneId最后一位
-        alibcTaokeParams.adzoneid = "109217350018";
-        alibcTaokeParams.pid = "mm_46748349_644650418_109217350018";
-        alibcTaokeParams.subPid = "mm_46748349_644650418_109217350018";
+        alibcTaokeParams.adzoneid = "109378300241";
+        alibcTaokeParams.pid = "mm_46748349_644650418_109378300241";
+        //alibcTaokeParams.subPid = "mm_46748349_644650418_109378300241";
         alibcTaokeParams.extraParams = new HashMap();
         alibcTaokeParams.extraParams.put("taokeAppkey","27708881");
         AlibcTrade.show(

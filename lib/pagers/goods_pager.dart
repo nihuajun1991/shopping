@@ -16,7 +16,7 @@ class GoodsPager extends StatefulWidget {
 }
 
 class _GoodsPagerState extends State<GoodsPager>
-    with SingleTickerProviderStateMixin,WidgetsBindingObserver{
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   TabController controller; //tab控制器
   int _currentIndex = 0; //选中下标
 
@@ -29,37 +29,31 @@ class _GoodsPagerState extends State<GoodsPager>
   @override
   void initState() {
     _getTabs();
-     FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
-     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
-  
-
-   @override
+  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
-
-   @override
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-      if (state == AppLifecycleState.resumed) {
-     FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
-     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    if (state == AppLifecycleState.resumed) {
+      FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     }
-    print("state:{$state}");
+    // print("state:{$state}");
     super.didChangeAppLifecycleState(state);
   }
-  
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: MAppBar(
         child: InkWell(
           onTap: () {
@@ -67,11 +61,11 @@ class _GoodsPagerState extends State<GoodsPager>
           },
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+                color: Colors.white,
                 boxShadow: [
                   new BoxShadow(
                     color: Colors.black12,
-                 //阴影颜色
+                    //阴影颜色
                     blurRadius: 2.0, //阴影大小
                   ),
                 ],
@@ -96,78 +90,71 @@ class _GoodsPagerState extends State<GoodsPager>
 
   Widget _isLoadOk() {
     if (tabs.length > 0) {
-       //print("_isLoadOk${tabs.length}");
+      //print("_isLoadOk${tabs.length}");
       return DefaultTabController(
-          length: tabs.length,
-          child: Scaffold(
-            appBar: TabBar(
-              controller: controller,
-              labelColor: Colors.pink,
-              indicatorColor: Colors.pink,
-              labelStyle: TextStyle(fontSize: ScreenUtil().setSp(22)),
-              isScrollable: true,
-              tabs: tabs,
-              onTap: (int i) {
-               // print(i);
-              },
-            ),
-            body: new TabBarView(
-              controller: controller,
-            
-              children: _getPager(),
-            ),
+        length: tabs.length,
+        child: Scaffold(
+          appBar: TabBar(
+            controller: controller,
+            labelColor: Colors.pink,
+            indicatorColor: Colors.pink,
+            labelStyle: TextStyle(fontSize: ScreenUtil().setSp(22)),
+            isScrollable: true,
+            tabs: tabs,
+            onTap: (int i) {
+              // print(i);
+            },
           ),
-          
-          );
+          body: new TabBarView(
+            controller: controller,
+            children: _getPager(),
+          ),
+        ),
+      );
     } else {
-      return LoadDialog(text:"加载中");
+      return LoadDialog(text: "加载中");
     }
   }
 
-   List<Widget> _getPager(){
-      List<Widget>  pagers = [];
+  List<Widget> _getPager() {
+    List<Widget> pagers = [];
 
-       for(int i =0;i<tabs.length;i++){
-         if(i == 0){
- pagers.add(HomePage());
-         }else{
-           if(bean.isLike!=null){
-           pagers.add(CategoryPage(cid:(i-1))) ;
-           }else{
-             pagers.add(CategoryPage(cid:(i))) ;
-           }  
-         }
-            
-       }
-     return pagers;
-   }
-
+    for (int i = 0; i < tabs.length; i++) {
+      if (i == 0) {
+        pagers.add(HomePage());
+      } else {
+        if (bean.isLike != null) {
+          pagers.add(CategoryPage(cid: (i - 1)));
+        } else {
+          pagers.add(CategoryPage(cid: (i)));
+        }
+      }
+    }
+    return pagers;
+  }
 
   void _getTabs() {
     getTagBarList().then((value) {
-        
       var jsonstr = json.decode(value.toString());
-       bean = new TabBar_Bean.fromJson(jsonstr);
-
+      bean = new TabBar_Bean.fromJson(jsonstr);
 
       if (bean.classlist != null && bean.classlist.length > 0) {
-       if(tabs.length==0){
-            tabs.add(new Tab(
-          text: '推荐',
-        ));
-         }
+        if (tabs.length == 0) {
+          tabs.add(new Tab(
+            text: '推荐',
+          ));
+        }
 
-         if(bean.isLike!=null){
-            tabs.add(new Tab(
-              
-          child: Image.network(bean.isLike.imgUrl,width: ScreenUtil().setWidth(150),),
-        ));
-         }
-      
+        if (bean.isLike != null) {
+          tabs.add(new Tab(
+            child: Image.network(
+              bean.isLike.imgUrl,
+              width: ScreenUtil().setWidth(150),
+            ),
+          ));
+        }
 
         bean.classlist.forEach((item) {
-       
-
           tabs.add(new Tab(
             text: item.className,
           ));

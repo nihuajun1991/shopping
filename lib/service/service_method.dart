@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'dart:async';
 //import 'dart:io';
@@ -71,7 +73,7 @@ Future getHotList() async {
 
 Future getShanPinList({pager, cid}) async {
   try {
-    //print('开始获取商品数据.......');
+    print('火热商品数据.......');
     Response response;
     Dio dio = new Dio();
     //print(servicePath['homePagerContent']+"?page=${pager}&cid=${cid}");
@@ -82,7 +84,7 @@ Future getShanPinList({pager, cid}) async {
           await dio.get(servicePath['homePagerContent'], queryParameters: {
         "cid": cid,
       });
-    } else if(pager == null){
+    } else if(cid == null){
       response =
           await dio.get(servicePath['homePagerContent'], queryParameters: {
         "page": pager,
@@ -98,6 +100,7 @@ Future getShanPinList({pager, cid}) async {
       //print(response.data);
       return response;
     } else {
+      
       throw Exception('后端接口出现异常');
     }
   } catch (e) {
@@ -131,10 +134,10 @@ Future getTbProductInfo(tbId) async {
     Response response;
     Dio dio = new Dio();
     print(servicePath['tbProductInfo']+"?tbId=$tbId");
-    response = await dio.post(servicePath['tbProductInfo'],queryParameters: {
+    response = await dio.post(servicePath['tbProductInfo'],data: {
       'ids':tbId
     });
-
+    //print("response${response.data}");
     if (response.statusCode == 200) {
       //print(response.data);
       return response;
@@ -170,7 +173,7 @@ try {
     Dio dio = new Dio();
     //print(servicePath['tbGoodsDetail']+'?data=%7B"itemNumId"%3A"$itemNumId"%7D&qq-pf-to=pcqq.group');
     //response = await dio.get(servicePath['tbGoodsDetail']+'?data=%7B"itemNumId"%3A"$itemNumId"%7D&qq-pf-to=pcqq.group');
-    print(servicePath['tbGoodsDetail1']+'?data={%22id%22:%22$itemNumId%22}');
+//    print(servicePath['tbGoodsDetail1']+'?data={%22id%22:%22$itemNumId%22}');
     response = await dio.get(servicePath['tbGoodsDetail1']+'?data={%22id%22:%22$itemNumId%22}');
     //print('tbGoodsDetail:'+response.data.toString());
     if (response.statusCode == 200) {
@@ -182,5 +185,32 @@ try {
   } catch (e) {
     return print(e);
   }
+}
+
+
+
+Future getShanPinDetail(String taobaoId,String title) async {
+  try{
+   Response response;
+   Dio dio = new Dio();
+   var data={'taobao_id':taobaoId,'title':title};
+
+   response = await dio.post(servicePath["tbShanPinDetail"],
+     data:data,
+     options: new Options(
+       contentType: ContentType.parse("application/x-www-form-urlencoded")),
+   );
+   print("response:${response.statusCode}");
+
+   if (response.statusCode == 200) {
+     print("执行返回数据");
+     return response.data;
+   } else {
+     throw Exception('后端接口出现异常');
+   }
+  }catch(e){
+    return print(e);
+  }
+
 }
 

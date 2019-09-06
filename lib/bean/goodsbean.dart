@@ -31,6 +31,12 @@ class Results {
         : null;
   }
 
+
+  @override
+  String toString() {
+    return 'Results{nTbkItem: $nTbkItem}';
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.nTbkItem != null) {
@@ -73,6 +79,12 @@ class NTbkItem {
       this.userType,
       this.volume,
       this.zkFinalPrice});
+
+
+  @override
+  String toString() {
+    return 'NTbkItem{catLeafName: $catLeafName, catName: $catName, itemUrl: $itemUrl, materialLibType: $materialLibType, nick: $nick, numIid: $numIid, pictUrl: $pictUrl, provcity: $provcity, reservePrice: $reservePrice, sellerId: $sellerId, smallImages: $smallImages, title: $title, userType: $userType, volume: $volume, zkFinalPrice: $zkFinalPrice}';
+  }
 
   NTbkItem.fromJson(Map<String, dynamic> json) {
     catLeafName = json['cat_leaf_name'];

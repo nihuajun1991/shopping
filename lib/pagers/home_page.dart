@@ -1,25 +1,31 @@
-import 'dart:convert'; 
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:shopping/pagers/goodsdetail.dart';
+import 'package:shopping/pagers/webviewpager.dart';
 import '../service/service_method.dart';
 import 'package:transparent_image/transparent_image.dart';
 import '../bean/shanpinbean.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
-} 
+}
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
-  String homePageContent = "正在获取数据";  
+  String homePageContent = "正在获取数据";
   var page = 0;
+  bool isHasNext = true;
+
   List<Data> shanPinList = [];
+  List swiperlist = [];
   @override
   bool get wantKeepAlive => true;
 
@@ -28,123 +34,291 @@ class _HomePageState extends State<HomePage>
     super.initState();
     print('重新加载');
     _getShanpinPage();
+    _getHomePagerContent();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("百姓生活+"),
-      // ),
-      body: EasyRefresh(
-        child: ListView(
-          children: <Widget>[
-            FutureBuilder(
-              future: getHomePagerContent(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  //print("data:"+snapshot.data['data'].toString());
-                  List swiper;
-                  if (snapshot.data != null) {
-                    if (snapshot.data['data'].toString().length > 0) {
-                      swiper = (snapshot.data['data'] as List);
-                    }
-                  }
+      body: EasyRefresh.builder(
+          header: BallPulseHeader(),
+          footer: BallPulseFooter(),
+          onLoad: () async {
+            print('加载更多-----page:$page');
+            if (isHasNext) {
+              await getShanPinList(pager: page).then((value) {
+                print('value-----value:' + value.toString());
 
-                  //print("swiper" + swiper.toString());
-                  return Column(
-                    children: <Widget>[
-                      SwiperDiy(
-                        swiperDateList: swiper,
-                      )
-                    ],
-                  );
-                } else {
-                  return Center(
-                    child: Text('加载中'),
-                  );
+                var beanstr = json.decode(value.toString());
+                var bean = new ShanpinBean.fromJson(beanstr);
+                List<Data> newShanpinList = bean.proList.data;
+                if (null == bean.proList.nextPageUrl) {
+                  isHasNext = false;
                 }
-              },
-            ),
-            FutureBuilder(
-              future: getHomeOrderImg(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  //print("data:"+snapshot.data['data'].toString());
-                  List navigatorList;
-                  if (snapshot.data != null) {
-                    if (snapshot.data['data1'].toString().length > 0) {
-                      navigatorList = (snapshot.data['data1'] as List);
-                    }
-                  }
-                  return Column(
-                    children: <Widget>[
-                      TopNavigator(
-                        navigatorList: navigatorList,
-                      )
-                    ],
-                  );
-                } else {
-                  return Center(
-                    child: Text(''),
-                  );
-                }
-              },
-            ),
-            AnimateText(),
-            FutureBuilder(
-              future: getHotList(),
-              builder: (context, snapshot) {
-                //print("hotList" + snapshot.data['hotList'].toString());
-                if (snapshot.hasData) {
-                  List recommendList;
-                  if (snapshot.data != null) {
-                    if (snapshot.data['data1'].toString().length > 0) {
-                      recommendList = (snapshot.data['hotList'] as List);
-                    }
-                  }
-                  return Column(
-                    children: <Widget>[
-                      Recommend(
-                        recommendList: recommendList,
-                      )
-                    ],
-                  );
-                } else {
-                  return Center(
-                    child: Text(''),
-                  );
-                }
-              },
-            ),
-            _hotGoods(),
-          ],
-        ),
-        onLoad: () async {
-          print('加载更多');
-          await getShanPinList(pager:page).then((value) {
-            var beanstr = json.decode(value.toString());
-            var bean = new ShanpinBean.fromJson(beanstr);
-            List<Data> newShanpinList = bean.proList.data;
-            setState(() {
-              shanPinList.addAll(newShanpinList);
-              page++;
-            });
-          });
-        },
-        // onRefresh: () async {
-        //   print('刷新');
-        // },
-        header: BallPulseHeader(),
-        footer: BallPulseFooter(),
-        
-      ),
+                setState(() {
+                  shanPinList.addAll(newShanpinList);
+                  page++;
+                });
+              });
+            }
+          },
+          builder: (context, physics, header, footer) {
+            return CustomScrollView(
+              physics: physics,
+              slivers: <Widget>[
+                // SliverList(
+                //   delegate: SliverChildListDelegate([
+                //     Container(
+                //       height: 210.0,
+                //       child: ScrollNotificationInterceptor(
+                //         child: Swiper(
+                //           itemBuilder: (BuildContext context, int index) {
+                //             return Image.network(
+                //               "${swiperlist[index]['content']}",
+                //               fit: BoxFit.fill,
+                //             );
+                //           },
+                //           itemCount: swiperlist.length !=0 ?swiperlist.length:0,
+                //           viewportFraction: 0.8,
+                //           scale: 0.9,
+                //           autoplay: true,
+                //         ),
+                //       ),
+                //     ),
+                //   ]),
+                // ),
+
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    Container(
+                      height:
+                          ScreenUtil.getInstance().setWidth(750) * 340 / 780,
+                      width: ScreenUtil.getInstance().setWidth(780),
+                      child: ScrollNotificationInterceptor(
+                        child: _swiperWdiget(),
+                      ),
+                    )
+                  ]),
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    FutureBuilder(
+                      future: getHomeOrderImg(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                           var jsonstr = json.decode(snapshot.data.toString());
+                         // print("jsonstr:"+jsonstr.toString());
+                          List navigatorList;
+                          if (jsonstr!= null) {
+                            if (jsonstr.length > 0) {
+                              navigatorList = (jsonstr['data1'] as List);
+                            }
+                          }
+                          return Column(
+                            children: <Widget>[
+                              TopNavigator(
+                                navigatorList: navigatorList,
+                              )
+                            ],
+                          );
+                        } else {
+                          return Center(
+                            child: Text(''),
+                          );
+                        }
+                      },
+                    ),
+                  ]),
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    AnimateText(),
+                  ]),
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    FutureBuilder(
+                      future: getHotList(),
+                      builder: (context, snapshot) {
+                        //print("hotList" + snapshot.data['hotList'].toString());
+                        if (snapshot.hasData) {
+                          List recommendList;
+                          if (snapshot.data != null) {
+                            if (snapshot.data['data1'].toString().length > 0) {
+                              recommendList =
+                                  (snapshot.data['hotList'] as List);
+                            }
+                          }
+                          return Recommend(
+                            recommendList: recommendList,
+                          );
+
+//                            Column(
+//                            children: <Widget>[
+//                              Recommend(
+//                                recommendList: recommendList,
+//                              )
+//                            ],
+//                          );
+                        } else {
+                          return Center(
+                            child: Text(''),
+                          );
+                        }
+                      },
+                    ),
+                  ]),
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    _hotGoods(),
+                  ]),
+                ),
+                footer
+              ],
+            );
+          }),
+
+//      EasyRefresh(
+//        child: ListView(
+//          children: <Widget>[
+//            FutureBuilder(
+//              future: getHomePagerContent(),
+//              builder: (context, snapshot) {
+//                if (snapshot.hasData) {
+//                  //print("data:"+snapshot.data['data'].toString());
+//                  List swiper;
+//                  if (snapshot.data != null) {
+//                    if (snapshot.data['data'].toString().length > 0) {
+//                      swiper = (snapshot.data['data'] as List);
+//                    }
+//                  }
+//
+//                  //print("swiper" + swiper.toString());
+//                  return Column(
+//                    children: <Widget>[
+//                      SwiperDiy(
+//                        swiperDateList: swiper,
+//                      )
+//                    ],
+//                  );
+//                } else {
+//                  return Center(
+//                    child: Text('加载中'),
+//                  );
+//                }
+//              },
+//            ),
+//            FutureBuilder(
+//              future: getHomeOrderImg(),
+//              builder: (context, snapshot) {
+//                if (snapshot.hasData) {
+//                  //print("data:"+snapshot.data['data'].toString());
+//                  List navigatorList;
+//                  if (snapshot.data != null) {
+//                    if (snapshot.data['data1'].toString().length > 0) {
+//                      navigatorList = (snapshot.data['data1'] as List);
+//                    }
+//                  }
+//                  return Column(
+//                    children: <Widget>[
+//                      TopNavigator(
+//                        navigatorList: navigatorList,
+//                      )
+//                    ],
+//                  );
+//                } else {
+//                  return Center(
+//                    child: Text(''),
+//                  );
+//                }
+//              },
+//            ),
+//            AnimateText(),
+//            FutureBuilder(
+//              future: getHotList(),
+//              builder: (context, snapshot) {
+//                //print("hotList" + snapshot.data['hotList'].toString());
+//                if (snapshot.hasData) {
+//                  List recommendList;
+//                  if (snapshot.data != null) {
+//                    if (snapshot.data['data1'].toString().length > 0) {
+//                      recommendList = (snapshot.data['hotList'] as List);
+//                    }
+//                  }
+//                  return Column(
+//                    children: <Widget>[
+//                      Recommend(
+//                        recommendList: recommendList,
+//                      )
+//                    ],
+//                  );
+//                } else {
+//                  return Center(
+//                    child: Text(''),
+//                  );
+//                }
+//              },
+//            ),
+//            _hotGoods(),
+//          ],
+//        ),
+//        onLoad: () async {
+//          print('加载更多');
+//          await getShanPinList(pager: page).then((value) {
+//            var beanstr = json.decode(value.toString());
+//            var bean = new ShanpinBean.fromJson(beanstr);
+//            List<Data> newShanpinList = bean.proList.data;
+//            setState(() {
+//              shanPinList.addAll(newShanpinList);
+//              page++;
+//            });
+//          });
+//        },
+//        // onRefresh: () async {
+//        //   print('刷新');
+//        // },
+//        header: BallPulseHeader(),
+//        footer: BallPulseFooter(),
+//      ),
     );
+  }
+
+  Widget _swiperWdiget() {
+    if (swiperlist != null && swiperlist.length > 0) {
+      return ScrollNotificationInterceptor(
+        child: Swiper(
+          itemBuilder: (BuildContext context, int index) {
+            return Image.network(
+              "${swiperlist[index]['content']}",
+              fit: BoxFit.fill,
+            );
+          },
+          itemCount: swiperlist.length,
+          pagination: SwiperPagination(),
+          autoplay: true,
+        ),
+      );
+    } else {
+      return Text('');
+    }
+  }
+
+  void _getHomePagerContent() {
+    getHomePagerContent().then((value) {
+      print("swiper:" + value['data'].toString());
+
+      setState(() {
+        if (null != value['data']) {
+          swiperlist.addAll(value['data']);
+        }
+      });
+    });
   }
 
   //获取火爆专区商品
   void _getShanpinPage() {
-    getShanPinList(pager:page).then((value) {
+    getShanPinList(pager: page).then((value) {
       var beanstr = json.decode(value.toString());
       var bean = new ShanpinBean.fromJson(beanstr);
       List<Data> newShanpinList = bean.proList.data;
@@ -157,7 +331,7 @@ class _HomePageState extends State<HomePage>
 
   //首页商品展示
   Widget _ShanPinTitle = Container(
-    margin: EdgeInsets.only(top: 10.0),
+    margin: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(10.0)),
     alignment: Alignment.center,
     color: Colors.white,
     padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -172,17 +346,44 @@ class _HomePageState extends State<HomePage>
     ),
   );
 
+   
+
+
   Widget _wrapList() {
     if (shanPinList.length > 0) {
       List<Widget> listWidget = [];
       shanPinList.forEach((item) {
         listWidget.add(InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return GoodsDetail(
+                data: item,
+                juanjia: (double.parse(item.quanFee)),
+              );
+            }));
+             
+             //_openOtherApp();
+
+          },
           child: Container(
-            width: ScreenUtil.getInstance().setWidth(372),
-            color: Colors.white,
-            padding: EdgeInsets.all(5.0),
-            margin: EdgeInsets.only(bottom: 3.0),
+            width: ScreenUtil.getInstance().setWidth(352),
+            //color: Colors.white,
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(3.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.white,
+                      //offset: Offset(0.0,0.0),
+                      blurRadius: 1.0)
+                ]),
+            padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
+            margin: EdgeInsets.fromLTRB(
+                ScreenUtil.getInstance().setWidth(10),
+                ScreenUtil.getInstance().setWidth(10),
+                ScreenUtil.getInstance().setWidth(5),
+                ScreenUtil.getInstance().setWidth(10)),
             child: Column(
               children: <Widget>[
                 Container(
@@ -194,14 +395,15 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
                 Container(
-                  width: ScreenUtil.getInstance().setWidth(372),
+                  width: ScreenUtil.getInstance().setWidth(352),
                   child: Text(
                     item.bussName,
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil.getInstance().setSp(22)),
+                        color: Colors.black,
+                        fontSize: ScreenUtil.getInstance().setSp(22)),
                   ),
                 ),
                 Stack(
@@ -209,7 +411,7 @@ class _HomePageState extends State<HomePage>
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Container(
-                          width: ScreenUtil.getInstance().setWidth(100),
+                          //width: ScreenUtil.getInstance().setWidth(100),
                           decoration: BoxDecoration(
                               color: Colors.red,
                               boxShadow: [
@@ -300,15 +502,18 @@ class SwiperDiy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ScreenUtil.getInstance().setWidth(750)*340/780,
+      height: ScreenUtil.getInstance().setWidth(750) * 340 / 780,
       width: ScreenUtil.getInstance().setWidth(780),
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
-          return 
-          
-Image.network(
-            "${swiperDateList[index]['content']}",
-            fit: BoxFit.fill,
+          return InkWell(
+            onTap: (){
+
+            },
+            child: Image.network(
+              "${swiperDateList[index]['content']}",
+              fit: BoxFit.fill,
+            ),
           );
         },
         itemCount: swiperDateList.length,
@@ -327,14 +532,23 @@ class TopNavigator extends StatelessWidget {
     return InkWell(
         onTap: () {
           print("点击了导航");
+         Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return WebViewPager(url: "www.baidu.com",);
+        }));
         },
         child: Column(
           children: <Widget>[
-            Image.network(item['content'],height: ScreenUtil.getInstance().setHeight(80),width: ScreenUtil.getInstance().setWidth(80),),
-            Text(item['name'],style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(20.0)),),
+            Image.network(
+              item['content'],
+              height: ScreenUtil.getInstance().setHeight(80),
+              width: ScreenUtil.getInstance().setWidth(80),
+            ),
+            Text(
+              item['name'],
+              style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(20.0)),
+            ),
           ],
-        )
-        );
+        ));
   }
 
   @override
@@ -343,18 +557,32 @@ class TopNavigator extends StatelessWidget {
       navigatorList.removeRange(10, this.navigatorList.length);
     }
 
-    // return Scaffold(
-    //   body: GridView.count(
-    //     physics: NeverScrollableScrollPhysics(),
-    //     crossAxisCount: 5, //每行5个
-    //     padding: EdgeInsets.all(5.0),
-    //     children: navigatorList.map((item) {
-    //       return _gridViewItemUI(context, item);
-    //     }).toList(),
-    //   ),
-    // );
-    
-    
+//     return Scaffold(
+//
+//       body: GridView.count(
+//         physics: NeverScrollableScrollPhysics(),
+//         crossAxisCount: 5, //每行5个
+//         padding: EdgeInsets.all(5.0),
+//         children: navigatorList.map((item) {
+//           return _gridViewItemUI(context, item);
+//         }).toList(),
+//       ),
+//     );
+
+//    return Row(
+//      children: <Widget>[
+//        Expanded(
+//          child: GridView.count(
+//            physics: NeverScrollableScrollPhysics(),
+//            crossAxisCount: 5, //每行5个
+//            padding: EdgeInsets.all(5.0),
+//            children: navigatorList.map((item) {
+//              return _gridViewItemUI(context, item);
+//            }).toList(),
+//          ),
+//        )
+//      ],
+//    );
 
     return Container(
       height: ScreenUtil.getInstance().setHeight(280),
@@ -410,6 +638,7 @@ class Recommend extends StatelessWidget {
   //推荐商品标题
   Widget _titleWidget() {
     return Container(
+      margin: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(10.0)),
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.fromLTRB(10.0, 2.0, 0, 5.0),
       decoration: BoxDecoration(
@@ -425,13 +654,34 @@ class Recommend extends StatelessWidget {
   }
 
   //推荐商品
-  Widget _item(index) {
+  Widget _item(context, index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        //print("recommendList:"+recommendList.toString());
+        Data data = new Data(
+          id: recommendList[index]['id'],
+          bussName: recommendList[index]['buss_name'],
+          taobaoId: recommendList[index]['taobao_id'],
+          pic: recommendList[index]['pic'],
+          couponLink: recommendList[index]['couponLink'],
+          shoujia: recommendList[index]['shoujia'],
+          juanhou: recommendList[index]['juanhou'],
+          quanFee: recommendList[index]['quan_fee'],
+          sales: recommendList[index]['sales'],
+          commissionRate: recommendList[index]['commission_rate'],
+        );
+        print("data:" + data.toString());
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return GoodsDetail(
+            data: data,
+            juanjia: double.parse(data.quanFee),
+          );
+        }));
+      },
       child: Container(
-        height: ScreenUtil.getInstance().setHeight(300),
+        //height: ScreenUtil.getInstance().setHeight(300),
         width: ScreenUtil.getInstance().setWidth(250),
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
         decoration: BoxDecoration(
             color: Colors.white,
             border: Border(
@@ -448,16 +698,12 @@ class Recommend extends StatelessWidget {
                 image: recommendList[index]['pic'],
               ),
             ),
-         
-              
-              Text(
+            Text(
               recommendList[index]['buss_name'],
               maxLines: 2,
-              style: TextStyle(fontSize:ScreenUtil.getInstance().setSp(20.0)),
+              style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(20.0)),
               overflow: TextOverflow.ellipsis,
             ),
-            
-            
             Container(
               height: ScreenUtil.getInstance().setHeight(40),
               width: ScreenUtil.getInstance().setWidth(250),
@@ -467,9 +713,10 @@ class Recommend extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                        '¥${double.parse(recommendList[index]['juanhou']).round()}',
-                        style: TextStyle(fontSize:ScreenUtil.getInstance().setSp(20.0)),
-                        ),  
+                      '¥${double.parse(recommendList[index]['juanhou']).round()}',
+                      style: TextStyle(
+                          fontSize: ScreenUtil.getInstance().setSp(20.0)),
+                    ),
                   ),
                   Align(
                       alignment: Alignment.centerRight,
@@ -488,7 +735,9 @@ class Recommend extends StatelessWidget {
                         //color: Colors.red,
                         child: Text(
                           '券${double.parse(recommendList[index]['quan_fee']).toInt()}',
-                          style: TextStyle(color: Colors.white,fontSize:ScreenUtil.getInstance().setSp(20.0)),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: ScreenUtil.getInstance().setSp(20.0)),
                         ),
                       )),
                 ],
@@ -503,13 +752,12 @@ class Recommend extends StatelessWidget {
 //横向列表
   Widget _recommendList() {
     return Container(
-      height: ScreenUtil.getInstance().setHeight(330),
+      height: ScreenUtil.getInstance().setHeight(310)+ScreenUtil.getInstance().setSp(20.0),
       child: ListView.builder(
-    
         scrollDirection: Axis.horizontal,
         itemCount: recommendList.length,
         itemBuilder: (context, index) {
-          return _item(index);
+          return _item(context, index);
         },
       ),
     );
@@ -517,15 +765,22 @@ class Recommend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: ScreenUtil.getInstance().setHeight(400),
-      //margin: EdgeInsets.only(top:10.0),
-      child: Column(
-        children: <Widget>[
-          _titleWidget(),
-          _recommendList(),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        _titleWidget(),
+        _recommendList(),
+      ],
     );
+
+//      Container(
+//      height: ScreenUtil.getInstance().setHeight(360),
+//      margin: EdgeInsets.only(top:ScreenUtil.getInstance().setHeight(10.0)),
+//      child: Column(
+//        children: <Widget>[
+//          _titleWidget(),
+//          _recommendList(),
+//        ],
+//      ),
+//    );
   }
 }

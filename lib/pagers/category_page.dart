@@ -13,7 +13,6 @@ import 'package:transparent_image/transparent_image.dart';
 
 class CategoryPage extends StatefulWidget {
   final int cid;
-
   const CategoryPage({Key key, this.cid}) : super(key: key);
 
   @override

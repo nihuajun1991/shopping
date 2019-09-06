@@ -11,6 +11,42 @@
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		3B80C3941E831B6300D905FE /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; };
 		3B80C3951E831B6300D905FE /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		657D5AE3231E5EBD006E89CD /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AE2231E5EBD006E89CD /* CoreMotion.framework */; };
+		657D5AE5231E5EDE006E89CD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AE4231E5EDE006E89CD /* libsqlite3.tbd */; };
+		657D5AE7231E62CE006E89CD /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AE6231E62CE006E89CD /* libstdc++.6.0.9.dylib */; };
+		657D5B00231E639C006E89CD /* AlibabaAuthSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 657D5AEC231E639C006E89CD /* AlibabaAuthSDK.bundle */; };
+		657D5B01231E639C006E89CD /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 657D5AED231E639C006E89CD /* AlipaySDK.bundle */; };
+		657D5B02231E639C006E89CD /* ALPLinkPartnerSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 657D5AEE231E639C006E89CD /* ALPLinkPartnerSDK.bundle */; };
+		657D5B03231E639C006E89CD /* NBResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 657D5AEF231E639C006E89CD /* NBResource.bundle */; };
+		657D5B04231E639C006E89CD /* AlibabaAuthExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF1231E639C006E89CD /* AlibabaAuthExt.framework */; };
+		657D5B05231E639C006E89CD /* AlibabaAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF2231E639C006E89CD /* AlibabaAuthSDK.framework */; };
+		657D5B06231E639C006E89CD /* AlibcTradeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF3231E639C006E89CD /* AlibcTradeSDK.framework */; };
+		657D5B07231E639C006E89CD /* AlibcLinkPartnerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF4231E639C006E89CD /* AlibcLinkPartnerSDK.framework */; };
+		657D5B08231E639C006E89CD /* SecurityGuardSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF5231E639C006E89CD /* SecurityGuardSDK.framework */; };
+		657D5B09231E639C006E89CD /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF6231E639C006E89CD /* UTDID.framework */; };
+		657D5B0A231E639C006E89CD /* AlibcTradeBiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF7231E639C006E89CD /* AlibcTradeBiz.framework */; };
+		657D5B0B231E639C006E89CD /* SGMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF8231E639C006E89CD /* SGMain.framework */; };
+		657D5B0C231E639C006E89CD /* AlibcTradeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AF9231E639C006E89CD /* AlibcTradeCommon.framework */; };
+		657D5B0D231E639C006E89CD /* TUnionTradeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AFA231E639C006E89CD /* TUnionTradeSDK.framework */; };
+		657D5B0E231E639C006E89CD /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AFB231E639C006E89CD /* UTMini.framework */; };
+		657D5B0F231E639C006E89CD /* OpenMtopSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AFC231E639C006E89CD /* OpenMtopSDK.framework */; };
+		657D5B10231E639C006E89CD /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AFD231E639C006E89CD /* AlipaySDK.framework */; };
+		657D5B11231E639C006E89CD /* SGSecurityBody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AFE231E639C006E89CD /* SGSecurityBody.framework */; };
+		657D5B12231E639C006E89CD /* OpenMtopExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5AFF231E639C006E89CD /* OpenMtopExt.framework */; };
+		657D5B14231E64DF006E89CD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B13231E64DF006E89CD /* MobileCoreServices.framework */; };
+		657D5B16231E64E9006E89CD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B15231E64E9006E89CD /* AssetsLibrary.framework */; };
+		657D5B18231E64F3006E89CD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B17231E64F3006E89CD /* ImageIO.framework */; };
+		657D5B1A231E6500006E89CD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B19231E6500006E89CD /* CoreData.framework */; };
+		657D5B1C231E650F006E89CD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B1B231E650E006E89CD /* CoreLocation.framework */; };
+		657D5B1E231E651A006E89CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B1D231E651A006E89CD /* Security.framework */; };
+		657D5B20231E6522006E89CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B1F231E6522006E89CD /* SystemConfiguration.framework */; };
+		657D5B22231E652C006E89CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B21231E652C006E89CD /* CoreTelephony.framework */; };
+		657D5B24231E6536006E89CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B23231E6536006E89CD /* CFNetwork.framework */; };
+		657D5B26231E6544006E89CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B25231E6544006E89CD /* CoreGraphics.framework */; };
+		657D5B28231E654C006E89CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B27231E654C006E89CD /* UIKit.framework */; };
+		657D5B2A231E6554006E89CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B29231E6554006E89CD /* Foundation.framework */; };
+		657D5B2C231E67C5006E89CD /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 657D5B2B231E67C5006E89CD /* libz.1.dylib */; };
+		657D5B2E231E709F006E89CD /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 657D5B2D231E709F006E89CD /* yw_1222.jpg */; };
 		9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; };
 		9705A1C71CF904A300538489 /* Flutter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9740EEB21CF90195004384FC /* Debug.xcconfig */; };
@@ -19,6 +55,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		ABC8DBCD7A75C42C328FB690 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCDF0E6184B33C5E0C65129F /* libPods-Runner.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +78,43 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3B80C3931E831B6300D905FE /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = Flutter/App.framework; sourceTree = "<group>"; };
+		3FB4F8FDA4CD4F34397AB887 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		657D5AE2231E5EBD006E89CD /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		657D5AE4231E5EDE006E89CD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		657D5AE6231E62CE006E89CD /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libstdc++.6.0.9.dylib"; sourceTree = DEVELOPER_DIR; };
+		657D5AEC231E639C006E89CD /* AlibabaAuthSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlibabaAuthSDK.bundle; sourceTree = "<group>"; };
+		657D5AED231E639C006E89CD /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		657D5AEE231E639C006E89CD /* ALPLinkPartnerSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ALPLinkPartnerSDK.bundle; sourceTree = "<group>"; };
+		657D5AEF231E639C006E89CD /* NBResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NBResource.bundle; sourceTree = "<group>"; };
+		657D5AF1231E639C006E89CD /* AlibabaAuthExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlibabaAuthExt.framework; sourceTree = "<group>"; };
+		657D5AF2231E639C006E89CD /* AlibabaAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlibabaAuthSDK.framework; sourceTree = "<group>"; };
+		657D5AF3231E639C006E89CD /* AlibcTradeSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlibcTradeSDK.framework; sourceTree = "<group>"; };
+		657D5AF4231E639C006E89CD /* AlibcLinkPartnerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlibcLinkPartnerSDK.framework; sourceTree = "<group>"; };
+		657D5AF5231E639C006E89CD /* SecurityGuardSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SecurityGuardSDK.framework; sourceTree = "<group>"; };
+		657D5AF6231E639C006E89CD /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
+		657D5AF7231E639C006E89CD /* AlibcTradeBiz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlibcTradeBiz.framework; sourceTree = "<group>"; };
+		657D5AF8231E639C006E89CD /* SGMain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SGMain.framework; sourceTree = "<group>"; };
+		657D5AF9231E639C006E89CD /* AlibcTradeCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlibcTradeCommon.framework; sourceTree = "<group>"; };
+		657D5AFA231E639C006E89CD /* TUnionTradeSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TUnionTradeSDK.framework; sourceTree = "<group>"; };
+		657D5AFB231E639C006E89CD /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
+		657D5AFC231E639C006E89CD /* OpenMtopSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenMtopSDK.framework; sourceTree = "<group>"; };
+		657D5AFD231E639C006E89CD /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		657D5AFE231E639C006E89CD /* SGSecurityBody.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SGSecurityBody.framework; sourceTree = "<group>"; };
+		657D5AFF231E639C006E89CD /* OpenMtopExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenMtopExt.framework; sourceTree = "<group>"; };
+		657D5B13231E64DF006E89CD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		657D5B15231E64E9006E89CD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		657D5B17231E64F3006E89CD /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		657D5B19231E6500006E89CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		657D5B1B231E650E006E89CD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		657D5B1D231E651A006E89CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		657D5B1F231E6522006E89CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		657D5B21231E652C006E89CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		657D5B23231E6536006E89CD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		657D5B25231E6544006E89CD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		657D5B27231E654C006E89CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		657D5B29231E6554006E89CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		657D5B2B231E67C5006E89CD /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libz.1.dylib; sourceTree = DEVELOPER_DIR; };
+		657D5B2D231E709F006E89CD /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,6 +127,9 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		990E6DFDAEEAE5E355B30CD5 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		CCDF0E6184B33C5E0C65129F /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D79BAF6A9B2B4EE5A476BB44 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +137,112 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657D5B2C231E67C5006E89CD /* libz.1.dylib in Frameworks */,
+				657D5B2A231E6554006E89CD /* Foundation.framework in Frameworks */,
+				657D5B28231E654C006E89CD /* UIKit.framework in Frameworks */,
+				657D5B26231E6544006E89CD /* CoreGraphics.framework in Frameworks */,
+				657D5B24231E6536006E89CD /* CFNetwork.framework in Frameworks */,
+				657D5B22231E652C006E89CD /* CoreTelephony.framework in Frameworks */,
+				657D5B20231E6522006E89CD /* SystemConfiguration.framework in Frameworks */,
+				657D5B1E231E651A006E89CD /* Security.framework in Frameworks */,
+				657D5B1C231E650F006E89CD /* CoreLocation.framework in Frameworks */,
+				657D5B1A231E6500006E89CD /* CoreData.framework in Frameworks */,
+				657D5B18231E64F3006E89CD /* ImageIO.framework in Frameworks */,
+				657D5B16231E64E9006E89CD /* AssetsLibrary.framework in Frameworks */,
+				657D5B14231E64DF006E89CD /* MobileCoreServices.framework in Frameworks */,
+				657D5B12231E639C006E89CD /* OpenMtopExt.framework in Frameworks */,
+				657D5AE7231E62CE006E89CD /* libstdc++.6.0.9.dylib in Frameworks */,
+				657D5B06231E639C006E89CD /* AlibcTradeSDK.framework in Frameworks */,
+				657D5B10231E639C006E89CD /* AlipaySDK.framework in Frameworks */,
+				657D5B0E231E639C006E89CD /* UTMini.framework in Frameworks */,
+				657D5AE5231E5EDE006E89CD /* libsqlite3.tbd in Frameworks */,
+				657D5B0D231E639C006E89CD /* TUnionTradeSDK.framework in Frameworks */,
+				657D5B0B231E639C006E89CD /* SGMain.framework in Frameworks */,
+				657D5B0C231E639C006E89CD /* AlibcTradeCommon.framework in Frameworks */,
+				657D5B11231E639C006E89CD /* SGSecurityBody.framework in Frameworks */,
+				657D5B04231E639C006E89CD /* AlibabaAuthExt.framework in Frameworks */,
+				657D5AE3231E5EBD006E89CD /* CoreMotion.framework in Frameworks */,
+				657D5B09231E639C006E89CD /* UTDID.framework in Frameworks */,
+				657D5B05231E639C006E89CD /* AlibabaAuthSDK.framework in Frameworks */,
+				657D5B0F231E639C006E89CD /* OpenMtopSDK.framework in Frameworks */,
+				657D5B08231E639C006E89CD /* SecurityGuardSDK.framework in Frameworks */,
+				657D5B07231E639C006E89CD /* AlibcLinkPartnerSDK.framework in Frameworks */,
 				9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */,
+				657D5B0A231E639C006E89CD /* AlibcTradeBiz.framework in Frameworks */,
 				3B80C3941E831B6300D905FE /* App.framework in Frameworks */,
+				ABC8DBCD7A75C42C328FB690 /* libPods-Runner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		657D5AEA231E639C006E89CD /* 阿里百川SDK */ = {
+			isa = PBXGroup;
+			children = (
+				657D5AEB231E639C006E89CD /* Resources */,
+				657D5AF0231E639C006E89CD /* Frameworks */,
+			);
+			path = "阿里百川SDK";
+			sourceTree = "<group>";
+		};
+		657D5AEB231E639C006E89CD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				657D5AEC231E639C006E89CD /* AlibabaAuthSDK.bundle */,
+				657D5AED231E639C006E89CD /* AlipaySDK.bundle */,
+				657D5AEE231E639C006E89CD /* ALPLinkPartnerSDK.bundle */,
+				657D5AEF231E639C006E89CD /* NBResource.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		657D5AF0231E639C006E89CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				657D5AF1231E639C006E89CD /* AlibabaAuthExt.framework */,
+				657D5AF2231E639C006E89CD /* AlibabaAuthSDK.framework */,
+				657D5AF3231E639C006E89CD /* AlibcTradeSDK.framework */,
+				657D5AF4231E639C006E89CD /* AlibcLinkPartnerSDK.framework */,
+				657D5AF5231E639C006E89CD /* SecurityGuardSDK.framework */,
+				657D5AF6231E639C006E89CD /* UTDID.framework */,
+				657D5AF7231E639C006E89CD /* AlibcTradeBiz.framework */,
+				657D5AF8231E639C006E89CD /* SGMain.framework */,
+				657D5AF9231E639C006E89CD /* AlibcTradeCommon.framework */,
+				657D5AFA231E639C006E89CD /* TUnionTradeSDK.framework */,
+				657D5AFB231E639C006E89CD /* UTMini.framework */,
+				657D5AFC231E639C006E89CD /* OpenMtopSDK.framework */,
+				657D5AFD231E639C006E89CD /* AlipaySDK.framework */,
+				657D5AFE231E639C006E89CD /* SGSecurityBody.framework */,
+				657D5AFF231E639C006E89CD /* OpenMtopExt.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		77EBAF600B3D1EFCC3C142C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				657D5B2B231E67C5006E89CD /* libz.1.dylib */,
+				657D5B29231E6554006E89CD /* Foundation.framework */,
+				657D5B27231E654C006E89CD /* UIKit.framework */,
+				657D5B25231E6544006E89CD /* CoreGraphics.framework */,
+				657D5B23231E6536006E89CD /* CFNetwork.framework */,
+				657D5B21231E652C006E89CD /* CoreTelephony.framework */,
+				657D5B1F231E6522006E89CD /* SystemConfiguration.framework */,
+				657D5B1D231E651A006E89CD /* Security.framework */,
+				657D5B1B231E650E006E89CD /* CoreLocation.framework */,
+				657D5B19231E6500006E89CD /* CoreData.framework */,
+				657D5B17231E64F3006E89CD /* ImageIO.framework */,
+				657D5B15231E64E9006E89CD /* AssetsLibrary.framework */,
+				657D5B13231E64DF006E89CD /* MobileCoreServices.framework */,
+				657D5AE6231E62CE006E89CD /* libstdc++.6.0.9.dylib */,
+				657D5AE4231E5EDE006E89CD /* libsqlite3.tbd */,
+				657D5AE2231E5EBD006E89CD /* CoreMotion.framework */,
+				CCDF0E6184B33C5E0C65129F /* libPods-Runner.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,10 +259,12 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				657D5B2D231E709F006E89CD /* yw_1222.jpg */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
-				CF3B75C9A7D2FA2A4C99F110 /* Frameworks */,
+				F113E35D2C45AC063747F3E4 /* Pods */,
+				77EBAF600B3D1EFCC3C142C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +279,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				657D5AEA231E639C006E89CD /* 阿里百川SDK */,
 				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
 				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
@@ -123,6 +301,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F113E35D2C45AC063747F3E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				990E6DFDAEEAE5E355B30CD5 /* Pods-Runner.debug.xcconfig */,
+				3FB4F8FDA4CD4F34397AB887 /* Pods-Runner.release.xcconfig */,
+				D79BAF6A9B2B4EE5A476BB44 /* Pods-Runner.profile.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,12 +318,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
+				B8EC658E14B1D9604C946B39 /* [CP] Check Pods Manifest.lock */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
+				EA724D77644A42E5E13BD0EF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,6 +347,7 @@
 				TargetAttributes = {
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 95USY833YV;
 					};
 				};
 			};
@@ -183,11 +374,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657D5B2E231E709F006E89CD /* yw_1222.jpg in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				657D5B02231E639C006E89CD /* ALPLinkPartnerSDK.bundle in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				657D5B01231E639C006E89CD /* AlipaySDK.bundle in Resources */,
 				9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */,
+				657D5B00231E639C006E89CD /* AlibabaAuthSDK.bundle in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				657D5B03231E639C006E89CD /* NBResource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +417,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		B8EC658E14B1D9604C946B39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA724D77644A42E5E13BD0EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -313,11 +546,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = S8QB4VV633;
+				DEVELOPMENT_TEAM = 95USY833YV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)/Runner/阿里百川SDK/Frameworks",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -325,7 +559,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.shopping;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"flutter_statusbarcolor\"",
+					"-framework",
+					"\"Flutter\"",
+					"-lstdc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.shoppingkk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -443,10 +685,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 95USY833YV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)/Runner/阿里百川SDK/Frameworks",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -454,7 +698,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.shopping;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"flutter_statusbarcolor\"",
+					"-framework",
+					"\"Flutter\"",
+					"-lstdc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.shoppingkk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -466,10 +718,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 95USY833YV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)/Runner/阿里百川SDK/Frameworks",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -477,7 +731,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.shopping;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"flutter_statusbarcolor\"",
+					"-framework",
+					"\"Flutter\"",
+					"-lstdc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.shoppingkk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

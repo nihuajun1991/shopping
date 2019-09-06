@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget{
 
     return Container(
       child: MaterialApp(
-        title: '百姓生活',
+        title: '优惠卷购物',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.pink),
         home: IndexPage(),
