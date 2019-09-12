@@ -76,7 +76,7 @@ Future getShanPinList({pager, cid}) async {
     print('火热商品数据.......');
     Response response;
     Dio dio = new Dio();
-    //print(servicePath['homePagerContent']+"?page=${pager}&cid=${cid}");
+    print(servicePath['homePagerContent']+"?page=${pager}&cid=${cid}");
         
 
     if (pager == null) {
@@ -139,7 +139,7 @@ Future getTbProductInfo(tbId) async {
     });
     //print("response${response.data}");
     if (response.statusCode == 200) {
-      //print(response.data);
+     // print(response.data);
       return response;
     } else {
       throw Exception('后端接口出现异常');
@@ -155,7 +155,7 @@ try {
     Dio dio = new Dio();
     print(servicePath['tbGoodsDetail']+'?data=%7B"itemNumId"%3A"$itemNumId"%7D&qq-pf-to=pcqq.group');
     response = await dio.get(servicePath['tbGoodsDetail']+'?data=%7B"itemNumId"%3A"$itemNumId"%7D&qq-pf-to=pcqq.group');
-    print('tbGoodsDetail:'+response.data.toString());
+    //print('tbGoodsDetail:'+response.data.toString());
     if (response.statusCode == 200) {
       //print(response.data);
       return response;
@@ -175,9 +175,9 @@ try {
     //response = await dio.get(servicePath['tbGoodsDetail']+'?data=%7B"itemNumId"%3A"$itemNumId"%7D&qq-pf-to=pcqq.group');
 //    print(servicePath['tbGoodsDetail1']+'?data={%22id%22:%22$itemNumId%22}');
     response = await dio.get(servicePath['tbGoodsDetail1']+'?data={%22id%22:%22$itemNumId%22}');
-    //print('tbGoodsDetail:'+response.data.toString());
+    print('tbGoodsDetail:'+servicePath['tbGoodsDetail1']+'?data={%22id%22:%22$itemNumId%22}');
     if (response.statusCode == 200) {
-      //print(response.data);
+      print("response${response.data}");
       return response;
     } else {
       throw Exception('后端接口出现异常');
@@ -200,14 +200,88 @@ Future getShanPinDetail(String taobaoId,String title) async {
      options: new Options(
        contentType: ContentType.parse("application/x-www-form-urlencoded")),
    );
-   print("response:${response.statusCode}");
+   //print("response:${response.statusCode}");
 
    if (response.statusCode == 200) {
-     print("执行返回数据");
+     //print("执行返回数据:${response.data}");
      return response.data;
    } else {
-     throw Exception('后端接口出现异常');
+     return response.data;
    }
+  }catch(e){
+    return print(e);
+  }
+
+}
+
+
+Future getNinePagerContent(double min_price,double max_price,int pagerindex) async {
+  try {
+    //print('开始获取首页数据.......');
+    Response response;
+    Dio dio = new Dio(
+        BaseOptions(
+          connectTimeout: 10000,
+          receiveTimeout: 10000,
+        )
+    );
+    print(servicePath['homePagerBanner']);
+    response = await dio
+        .get(servicePath['homePagerContent'], queryParameters: {
+          "min_price": min_price,
+          "max_price":max_price,
+       "page":pagerindex
+        });
+    if (response.statusCode == 200) {
+      //print(response.data);
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
+
+Future getPDDTab() async {
+  try{
+    Response response;
+    Dio dio = new Dio();
+
+
+    response = await dio.post(servicePath["pddcategory"]);
+    //print("response:${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response.data;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  }catch(e){
+    return print(e);
+  }
+
+}
+
+
+Future getPDDCategroy(String opt_id,String page) async {
+  try{
+    Response response;
+    Dio dio = new Dio();
+    response = await dio.get(servicePath["pddcategorygoods"],queryParameters: {
+      'opt_id':opt_id,
+       'page':page
+    });
+    //print("response:${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response.data;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
   }catch(e){
     return print(e);
   }

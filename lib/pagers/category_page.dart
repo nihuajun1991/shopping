@@ -11,9 +11,12 @@ import 'package:shopping/service/service_method.dart';
 import 'package:shopping/view/loading_dialog.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+
 class CategoryPage extends StatefulWidget {
   final int cid;
-  const CategoryPage({Key key, this.cid}) : super(key: key);
+  final int min_price;
+  final int max_price;
+  const CategoryPage({Key key, this.cid,this.min_price,this.max_price}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -353,4 +356,5 @@ class CategoryPageState extends State<CategoryPage> {
       return Text("");
     }
   }
+
 }

@@ -51,7 +51,7 @@ class NTbkItem {
   String catName;
   String itemUrl;
   String materialLibType;
-  String nick;
+  //String nick;
   String numIid;
   String pictUrl;
   String provcity;
@@ -68,7 +68,7 @@ class NTbkItem {
       this.catName,
       this.itemUrl,
       this.materialLibType,
-      this.nick,
+      //this.nick,
       this.numIid,
       this.pictUrl,
       this.provcity,
@@ -83,7 +83,7 @@ class NTbkItem {
 
   @override
   String toString() {
-    return 'NTbkItem{catLeafName: $catLeafName, catName: $catName, itemUrl: $itemUrl, materialLibType: $materialLibType, nick: $nick, numIid: $numIid, pictUrl: $pictUrl, provcity: $provcity, reservePrice: $reservePrice, sellerId: $sellerId, smallImages: $smallImages, title: $title, userType: $userType, volume: $volume, zkFinalPrice: $zkFinalPrice}';
+    return 'NTbkItem{catLeafName: $catLeafName, catName: $catName, itemUrl: $itemUrl, materialLibType: $materialLibType,  numIid: $numIid, pictUrl: $pictUrl, provcity: $provcity, reservePrice: $reservePrice, sellerId: $sellerId, smallImages: $smallImages, title: $title, userType: $userType, volume: $volume, zkFinalPrice: $zkFinalPrice}';
   }
 
   NTbkItem.fromJson(Map<String, dynamic> json) {
@@ -91,7 +91,7 @@ class NTbkItem {
     catName = json['cat_name'];
     itemUrl = json['item_url'];
     materialLibType = json['material_lib_type'];
-    nick = json['nick'];
+    //nick = json['nick'];
     numIid = json['num_iid'];
     pictUrl = json['pict_url'];
     provcity = json['provcity'];
@@ -112,7 +112,7 @@ class NTbkItem {
     data['cat_name'] = this.catName;
     data['item_url'] = this.itemUrl;
     data['material_lib_type'] = this.materialLibType;
-    data['nick'] = this.nick;
+    //data['nick'] = this.nick;
     data['num_iid'] = this.numIid;
     data['pict_url'] = this.pictUrl;
     data['provcity'] = this.provcity;

@@ -22,5 +22,7 @@ const servicePath = {
   'tbGoodsDetail':taobaoUrl+"mtop.taobao.detail.getdetail/6.0/",
   'tbGoodsDetail1':taobaoUrl1+"mtop.taobao.detail.getdesc/6.0/",
   'tbShanPinDetail':'https://www.sumaitao.wang/index.php/api/tb/getUland',
+  'pddcategory':'http://www.sumaitao.wang/index.php/api/pdd/category',
+  'pddcategorygoods':'http://www.sumaitao.wang/index.php/api/pdd/search'
 };
 

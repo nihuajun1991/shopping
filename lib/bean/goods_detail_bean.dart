@@ -8,9 +8,9 @@ class GoodsDetailBean {
   GoodsDetailBean({this.code, this.msg, this.data, this.count});
 
   GoodsDetailBean.fromJson(Map<String, dynamic> json) {
-    code = json['code'] !=null ? json['code'] :null;
+    code = json['code'] !="" ? json['code'] :null;
     msg = json['msg'];
-    data = json['data'] != null ? new ShanPin.fromJson(json['data']) : null;
+    data = json['data'] != "" ? new ShanPin.fromJson(json['data']) : null;
     count = json['count'];
   }
 
@@ -217,6 +217,7 @@ class SmallImages {
 
   SmallImages.fromJson(Map<String, dynamic> json) {
     string = json['string'].cast<String>();
+    //string = json['string'];
   }
 
   Map<String, dynamic> toJson() {

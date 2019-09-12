@@ -567,7 +567,7 @@
 					"\"Flutter\"",
 					"-lstdc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.shoppingkk;
+				PRODUCT_BUNDLE_IDENTIFIER = shopping365;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -706,7 +706,7 @@
 					"\"Flutter\"",
 					"-lstdc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.shoppingkk;
+				PRODUCT_BUNDLE_IDENTIFIER = shopping365;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -739,7 +739,7 @@
 					"\"Flutter\"",
 					"-lstdc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.shoppingkk;
+				PRODUCT_BUNDLE_IDENTIFIER = shopping365;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

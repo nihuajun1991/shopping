@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LoadDialog extends Dialog {
   String text;
 
-  LoadDialog({Key key, this.text}) : super(key: key);
+  LoadDialog({Key key, this.text="加载中..."}) : super(key: key);
 
   Widget build(BuildContext context) {
     return new Material(

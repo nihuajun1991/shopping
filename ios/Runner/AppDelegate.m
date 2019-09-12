@@ -22,11 +22,11 @@
     
     
     // 初始化函数
-    [[AlibcTradeSDK sharedInstance] asyncInitWithSuccess:^{
-        NSLog(@"初始化成功");
-    } failure:^(NSError *error) {
-        NSLog(@"初始化失败");
-    }];
+//    [[AlibcTradeSDK sharedInstance] asyncInitWithSuccess:^{
+//        NSLog(@"初始化成功");
+//    } failure:^(NSError *error) {
+//        NSLog(@"初始化失败");
+//    }];
     
     [GeneratedPluginRegistrant registerWithRegistry:self];
     
@@ -36,12 +36,12 @@
     [batteryChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
         
         if ([@"lingjuan" isEqualToString:call.method]) {
-            NSLog(@"fffffffffffffffffffffffffffffffffffffffff");
-            NSLog(@"%@", call.arguments);
-            NSDictionary *testdic = call.arguments;
-            NSString *idStr = testdic[@"id"];
-            NSLog(@"%@", idStr);
-            [self showALiBcTradeTaokeWithID:idStr];
+//            NSLog(@"fffffffffffffffffffffffffffffffffffffffff");
+//            NSLog(@"%@", call.arguments);
+//            NSDictionary *testdic = call.arguments;
+//            NSString *idStr = testdic[@"id"];
+//            NSLog(@"%@", idStr);
+//            [self showALiBcTradeTaokeWithID:idStr];
 
             
 

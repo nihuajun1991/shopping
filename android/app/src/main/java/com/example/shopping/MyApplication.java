@@ -4,8 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 
-import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
-import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
+
 import io.flutter.app.FlutterApplication;
 
 import java.util.HashMap;
@@ -17,7 +16,7 @@ public class MyApplication extends FlutterApplication {
     public void onCreate() {
         super.onCreate();
         //FlutterMain.startInitialization(app);
-        initAlibcTradeSDK();
+        //initAlibcTradeSDK();
     }
 
 

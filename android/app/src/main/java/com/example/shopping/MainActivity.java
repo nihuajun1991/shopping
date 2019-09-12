@@ -13,18 +13,18 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
-import com.alibaba.baichuan.trade.biz.context.AlibcTradeResult;
-import com.alibaba.baichuan.android.trade.AlibcTrade;
-import com.alibaba.baichuan.android.trade.callback.AlibcTradeCallback;
-import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
-import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
-
-import com.alibaba.baichuan.trade.biz.core.taoke.AlibcTaokeParams;
-import com.alibaba.baichuan.trade.biz.AlibcConstants;
-import com.alibaba.baichuan.android.trade.page.AlibcDetailPage;
-import com.alibaba.baichuan.android.trade.page.AlibcBasePage;
-import com.alibaba.baichuan.android.trade.model.AlibcShowParams;
-import com.alibaba.baichuan.android.trade.model.OpenType;
+//import com.alibaba.baichuan.trade.biz.context.AlibcTradeResult;
+//import com.alibaba.baichuan.android.trade.AlibcTrade;
+//import com.alibaba.baichuan.android.trade.callback.AlibcTradeCallback;
+//import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
+//import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
+//
+//import com.alibaba.baichuan.trade.biz.core.taoke.AlibcTaokeParams;
+//import com.alibaba.baichuan.trade.biz.AlibcConstants;
+//import com.alibaba.baichuan.android.trade.page.AlibcDetailPage;
+//import com.alibaba.baichuan.android.trade.page.AlibcBasePage;
+//import com.alibaba.baichuan.android.trade.model.AlibcShowParams;
+//import com.alibaba.baichuan.android.trade.model.OpenType;
 import android.util.Log;
 import java.util.HashMap;
 import android.widget.Toast;
@@ -87,59 +87,59 @@ private static  final  String TAG= "MainActivity";
         return installed;
     }
 
- private void showDetailPage(Activity activity , String id ,String type ){
-        AlibcShowParams alibcShowParams = null;
-        switch (type){
-            case TAOBAO:
-                alibcShowParams =  new AlibcShowParams(OpenType.Native, false);
-                alibcShowParams.setClientType("taobao_scheme")  ;
-                break;
-            case "2":
-
-                break;
-            case "3":
-
-                break;
-            default:
-
-        }
-        AlibcDetailPage alibcBasePage = new AlibcDetailPage(id);
-        HashMap exParams = new HashMap();
-        exParams.put(AlibcConstants.ISV_CODE, "appisvcode");
-        AlibcTaokeParams alibcTaokeParams =new AlibcTaokeParams();
-        // adzoneid 为mm_memberId_siteId_adzoneId最后一位
-        alibcTaokeParams.adzoneid = "109378300241";
-        alibcTaokeParams.pid = "mm_46748349_644650418_109378300241";
-        //alibcTaokeParams.subPid = "mm_46748349_644650418_109378300241";
-        alibcTaokeParams.extraParams = new HashMap();
-        alibcTaokeParams.extraParams.put("taokeAppkey","27708881");
-        AlibcTrade.show(
-                activity,
-                alibcBasePage,
-                alibcShowParams,
-                alibcTaokeParams,
-                exParams,
-                new AlibcTradeCallback(){
-
-                    @Override
-                    public void onTradeSuccess(AlibcTradeResult alibcTradeResult) {
-
-                    }
-
-                    @Override
-                    public void onFailure(int i, String s) {
-
-                    }
-                }
-        );
-
-    }
-
-
-    private void showTaobaoDetail(Activity activity, String id) {
-
-        showDetailPage(activity, id, TAOBAO);
-
-    }
+// private void showDetailPage(Activity activity , String id ,String type ){
+//        AlibcShowParams alibcShowParams = null;
+//        switch (type){
+//            case TAOBAO:
+//                alibcShowParams =  new AlibcShowParams(OpenType.Native, false);
+//                alibcShowParams.setClientType("taobao_scheme")  ;
+//                break;
+//            case "2":
+//
+//                break;
+//            case "3":
+//
+//                break;
+//            default:
+//
+//        }
+//        AlibcDetailPage alibcBasePage = new AlibcDetailPage(id);
+//        HashMap exParams = new HashMap();
+//        exParams.put(AlibcConstants.ISV_CODE, "appisvcode");
+//        AlibcTaokeParams alibcTaokeParams =new AlibcTaokeParams();
+//        // adzoneid 为mm_memberId_siteId_adzoneId最后一位
+//        alibcTaokeParams.adzoneid = "109378300241";
+//        alibcTaokeParams.pid = "mm_46748349_644650418_109378300241";
+//        //alibcTaokeParams.subPid = "mm_46748349_644650418_109378300241";
+//        alibcTaokeParams.extraParams = new HashMap();
+//        alibcTaokeParams.extraParams.put("taokeAppkey","27708881");
+//        AlibcTrade.show(
+//                activity,
+//                alibcBasePage,
+//                alibcShowParams,
+//                alibcTaokeParams,
+//                exParams,
+//                new AlibcTradeCallback(){
+//
+//                    @Override
+//                    public void onTradeSuccess(AlibcTradeResult alibcTradeResult) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int i, String s) {
+//
+//                    }
+//                }
+//        );
+//
+//    }
+//
+//
+//    private void showTaobaoDetail(Activity activity, String id) {
+//
+//        showDetailPage(activity, id, TAOBAO);
+//
+//    }
   //private void  showDetailPage
 }

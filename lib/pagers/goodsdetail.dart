@@ -91,7 +91,7 @@ class _GoodsDetailState extends State<GoodsDetail>
     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     //changeStatusColor(Colors.transparent);
     _getTbProductInfo(data?.taobaoId);
-    //_getGoodsDetail(data.taobaoId);
+    _getGoodsDetail(data.taobaoId);
     print("taobaoId:" + data?.taobaoId);
   }
 
@@ -108,18 +108,24 @@ class _GoodsDetailState extends State<GoodsDetail>
   void _getShanPinDetail(title) {
 
     getShanPinDetail(data?.taobaoId,title.toString(),).then((value) {
-      print("value:${value.toString()}");
+      //print("value:${value.toString()}");
 
       if (value.toString().length > 0) {
         var jsonstr = json.decode(value.toString());
-        goodsbean = new GoodsDetailBean.fromJson(jsonstr);
+        if(jsonstr['code']==200){
+          goodsbean = new GoodsDetailBean.fromJson(jsonstr);
 
-        setState(() {
-          swiperImageList = goodsbean?.data?.smallImages?.string;
+          setState(() {
+            swiperImageList = goodsbean?.data?.smallImages?.string;
 
-          detail = goodsbean?.data;
-          print(detail.zkFinalPrice);
-        });
+            detail = goodsbean?.data;
+            print(detail.zkFinalPrice);
+          });
+        }else{
+          print(jsonstr['msg']);
+        }
+
+
       }
       // print("Info:$text");
     });

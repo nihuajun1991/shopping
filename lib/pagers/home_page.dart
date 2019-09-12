@@ -6,7 +6,10 @@ import 'package:flutter_easyrefresh/ball_pulse_header.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shopping/pagers/goodsdetail.dart';
-import 'package:shopping/pagers/webviewpager.dart';
+import 'package:shopping/pagers/navigatorpagers/nine_pager.dart';
+import 'package:shopping/pagers/navigatorpagers/pdd_pager.dart';
+
+import 'package:shopping/view/webview.dart';
 import '../service/service_method.dart';
 import 'package:transparent_image/transparent_image.dart';
 import '../bean/shanpinbean.dart';
@@ -21,7 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   String homePageContent = "正在获取数据";
-  var page = 0;
+  var page = 1;
   bool isHasNext = true;
 
   List<Data> shanPinList = [];
@@ -47,7 +50,7 @@ class _HomePageState extends State<HomePage>
             print('加载更多-----page:$page');
             if (isHasNext) {
               await getShanPinList(pager: page).then((value) {
-                print('value-----value:' + value.toString());
+               // print('value-----value:' + value.toString());
 
                 var beanstr = json.decode(value.toString());
                 var bean = new ShanpinBean.fromJson(beanstr);
@@ -306,7 +309,7 @@ class _HomePageState extends State<HomePage>
 
   void _getHomePagerContent() {
     getHomePagerContent().then((value) {
-      print("swiper:" + value['data'].toString());
+     // print("swiper:" + value['data'].toString());
 
       setState(() {
         if (null != value['data']) {
@@ -532,10 +535,49 @@ class TopNavigator extends StatelessWidget {
     return InkWell(
         onTap: () {
           print("点击了导航");
-         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return WebViewPager(url: "www.baidu.com",);
-        }));
+//         Navigator.push(context, WebView());
+
+          if (null != item['url'] && item['url'].toString().contains("http")) {
+            String url = item['url'].toString().substring(
+                item['url'].toString().indexOf("http"), item['url']
+                .toString()
+                .length);
+            print(url);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        WebView(
+                          url: url,
+                          statusBarColor: "ffffff",
+                          title: "baidu",
+                          backForbid: true,
+                          hideAppBar: false,
+                        )));
+          }
+
+          if (null != item['url'] && item['url'].toString().contains("bkb")) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NinePager()
+              ),
+            );
+          }
+
+          if(null!= item['url'] &&item['url'].toString().contains("pdd")){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PDDPager()
+              ),
+            );
+
+          }
+
+
         },
+
         child: Column(
           children: <Widget>[
             Image.network(
@@ -670,7 +712,7 @@ class Recommend extends StatelessWidget {
           sales: recommendList[index]['sales'],
           commissionRate: recommendList[index]['commission_rate'],
         );
-        print("data:" + data.toString());
+        //print("data:" + data.toString());
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return GoodsDetail(
             data: data,
