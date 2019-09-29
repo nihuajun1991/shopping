@@ -115,17 +115,18 @@ class _GoodsDetailState extends State<GoodsDetail>
         if(jsonstr['code']==200){
           goodsbean = new GoodsDetailBean.fromJson(jsonstr);
 
-          setState(() {
-            swiperImageList = goodsbean?.data?.smallImages?.string;
+          if(mounted){
+            setState(() {
+              swiperImageList = goodsbean?.data?.smallImages?.string;
 
-            detail = goodsbean?.data;
-            print(detail.zkFinalPrice);
-          });
+              detail = goodsbean?.data;
+              print(detail.zkFinalPrice);
+            });
+          }
+
         }else{
           print(jsonstr['msg']);
         }
-
-
       }
       // print("Info:$text");
     });

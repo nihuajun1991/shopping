@@ -23,6 +23,9 @@ const servicePath = {
   'tbGoodsDetail1':taobaoUrl1+"mtop.taobao.detail.getdesc/6.0/",
   'tbShanPinDetail':'https://www.sumaitao.wang/index.php/api/tb/getUland',
   'pddcategory':'http://www.sumaitao.wang/index.php/api/pdd/category',
-  'pddcategorygoods':'http://www.sumaitao.wang/index.php/api/pdd/search'
+  'pddcategorygoods':'http://www.sumaitao.wang/index.php/api/pdd/search',
+  'pddgoodsdetail':'http://www.sumaitao.wang/index.php/api/pdd/info',
+  'pddgoodsshare':'http://www.sumaitao.wang/index.php/api/pdd/share',
+  'jhsgood':'http://newapi.tkjidi.com/api/tkcms/ju'
 };
 

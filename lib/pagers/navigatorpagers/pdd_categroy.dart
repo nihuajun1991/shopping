@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping/bean/pdd_category_bean.dart';
 import 'package:shopping/bean/shanpinbean.dart';
 import 'package:shopping/pagers/goodsdetail.dart';
+import 'package:shopping/pagers/navigatorpagers/pdd_detail_pager.dart';
 import 'package:shopping/service/service_method.dart';
 import 'package:shopping/view/loading_dialog.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -39,6 +40,7 @@ class PDDCategoryPagerState extends State<PDDCategoryPager> with AutomaticKeepAl
     _getShanpinPage();
     _controller = EasyRefreshController();
   }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -105,16 +107,16 @@ class PDDCategoryPagerState extends State<PDDCategoryPager> with AutomaticKeepAl
       shanPinList?.forEach((item) {
         listWidget.add(InkWell(
           onTap: () {
-//            Data data =  new Data();
-//
-//            Navigator.push(context, MaterialPageRoute(builder: (context) {
-//              return GoodsDetail(
-//                data: item,
-//                juanjia: (double.parse(item.quanFee)),
-//              );
-//            }));
+            Data data = new Data(
+              taobaoId: item.goodsId.toString(),
+            );
 
-            //_openOtherApp();
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return PDDDetailPager(
+              data: data,
+               juanjia: item.couponDiscount/100,
+              );
+            }));
 
           },
           child: Container(
@@ -178,7 +180,7 @@ class PDDCategoryPagerState extends State<PDDCategoryPager> with AutomaticKeepAl
                           margin: EdgeInsets.only(top: 5.0),
                           //color: Colors.red,
                           child: Text(
-                            '券  ¥${item.couponDiscount}',
+                            '券  ¥${item.couponDiscount/100}',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: ScreenUtil.getInstance().setSp(22)),
@@ -205,7 +207,7 @@ class PDDCategoryPagerState extends State<PDDCategoryPager> with AutomaticKeepAl
                     child: RichText(
                       text: TextSpan(children: <TextSpan>[
                         TextSpan(
-                            text: "¥${item?.minNormalPrice-item?.couponDiscount}",
+                            text: "¥${((item?.minNormalPrice)/100-(item?.couponDiscount)/100).toStringAsFixed(2)}",
                             style: TextStyle(
                                 color: Color(0xffec6900),
                                 fontSize: ScreenUtil.getInstance().setSp(22))),
@@ -236,6 +238,5 @@ class PDDCategoryPagerState extends State<PDDCategoryPager> with AutomaticKeepAl
   }
 
   @override
-
   bool get wantKeepAlive => true;
 }

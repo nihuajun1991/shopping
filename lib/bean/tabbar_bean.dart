@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+
 class TabBar_Bean {
   int status;
   String message;
@@ -41,6 +43,7 @@ class Classlist {
   String classKeywords;
   String classDescription;
   String image;
+  Color color;
 
   Classlist(
       {this.id,
@@ -48,6 +51,7 @@ class Classlist {
       this.classTitle,
       this.classKeywords,
       this.classDescription,
+        this.color=Colors.white,
       this.image});
 
   Classlist.fromJson(Map<String, dynamic> json) {
@@ -58,7 +62,11 @@ class Classlist {
     classDescription = json['class_description'];
     image = json['image'];
   }
-  
+
+  void setColor(Color color){
+    this.color = color;
+  }
+
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -77,7 +85,11 @@ class IsLike {
   String imgUrl;
   String action;
 
-  IsLike({this.isShow, this.imgUrl, this.action});
+
+  IsLike({this.isShow, this.imgUrl, this.action,});
+
+
+
 
   IsLike.fromJson(Map<String, dynamic> json) {
     isShow = json['isShow'];

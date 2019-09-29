@@ -6,8 +6,10 @@ import 'package:flutter_easyrefresh/ball_pulse_header.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shopping/pagers/goodsdetail.dart';
+import 'package:shopping/pagers/navigatorpagers/ju_pager.dart';
 import 'package:shopping/pagers/navigatorpagers/nine_pager.dart';
 import 'package:shopping/pagers/navigatorpagers/pdd_pager.dart';
+import 'package:shopping/pagers/swiper_goods_detail_page.dart';
 
 import 'package:shopping/view/webview.dart';
 import '../service/service_method.dart';
@@ -292,9 +294,21 @@ class _HomePageState extends State<HomePage>
       return ScrollNotificationInterceptor(
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
-            return Image.network(
-              "${swiperlist[index]['content']}",
-              fit: BoxFit.fill,
+            return InkWell(
+              onTap: (){
+                print(swiperlist[index].toString());
+
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SwiperGoodsDetail(
+                      url:swiperlist[index]['url'],
+                      name:swiperlist[index]['name'],
+                  );
+                }));
+              },
+              child:  Image.network(
+                "${swiperlist[index]['content']}",
+                fit: BoxFit.fill,
+              ),
             );
           },
           itemCount: swiperlist.length,
@@ -384,9 +398,10 @@ class _HomePageState extends State<HomePage>
             padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
             margin: EdgeInsets.fromLTRB(
                 ScreenUtil.getInstance().setWidth(10),
-                ScreenUtil.getInstance().setWidth(10),
-                ScreenUtil.getInstance().setWidth(5),
-                ScreenUtil.getInstance().setWidth(10)),
+              ScreenUtil.getInstance().setWidth(10),
+              ScreenUtil.getInstance().setWidth(5),
+              ScreenUtil.getInstance().setWidth(10)
+            ),
             child: Column(
               children: <Widget>[
                 Container(
@@ -574,6 +589,17 @@ class TopNavigator extends StatelessWidget {
             );
 
           }
+
+          if(null!= item['url'] &&item['url'].toString().contains("jhs")){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => JHSPager()
+              ),
+            );
+
+          }
+
 
 
         },

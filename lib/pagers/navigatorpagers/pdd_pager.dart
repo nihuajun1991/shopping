@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:shopping/bean/pdd_bean.dart';
 import 'package:shopping/pagers/navigatorpagers/pdd_categroy.dart';
 import 'package:shopping/service/service_method.dart';
@@ -16,7 +17,7 @@ class PDDPager extends StatefulWidget {
 }
 
 class _PDDPagerState extends State<PDDPager>
-    with SingleTickerProviderStateMixin {
+     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   String str = '';
   TabController controller; //tab控制器
   List<Widget> tabs = [];
@@ -25,9 +26,28 @@ class _PDDPagerState extends State<PDDPager>
   PDDBean bean;
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    FlutterStatusbarcolor.setStatusBarColor(Colors.white);
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     tabloading = true;
     _getPDDTab();
 
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      FlutterStatusbarcolor.setStatusBarColor(Colors.white);
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    }
+    print("state:{$state}");
+    super.didChangeAppLifecycleState(state);
   }
 
   _onTabChanged() {
@@ -135,9 +155,16 @@ class _PDDPagerState extends State<PDDPager>
       color: Colors.white,
       height: ScreenUtil.getInstance().setHeight(60),
       width: ScreenUtil.getInstance().setWidth(750),
-      child: Row(
+      child:Stack(
+        alignment: Alignment.center,
+        fit: StackFit.expand,
         children: <Widget>[
-          GestureDetector(
+
+
+          Positioned(
+
+            left: 0,
+            child:GestureDetector(
             child: Icon(
               Icons.navigate_before,
               size: 30,
@@ -146,21 +173,50 @@ class _PDDPagerState extends State<PDDPager>
               Navigator.pop(context);
             },
           ),
-          Expanded(
-            child: Center(
-              child: Text(
-                '拼多多',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  decoration: TextDecoration.none,
-                ),
-              ),
-            ),
-          )
-        ],
+          ),
+
+
+    Center(
+      child: Text(
+        '拼多多',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          decoration: TextDecoration.none,
+        ),
       ),
+    ),
+        ],
+
+      ),
+
+//      Row(
+//        children: <Widget>[
+//          GestureDetector(
+//            child: Icon(
+//              Icons.navigate_before,
+//              size: 30,
+//            ),
+//            onTap: () {
+//              Navigator.pop(context);
+//            },
+//          ),
+//          Expanded(
+//            child: Center(
+//              child: Text(
+//                '拼多多',
+//                textAlign: TextAlign.center,
+//                style: TextStyle(
+//                  fontSize: 20,
+//                  color: Colors.black,
+//                  decoration: TextDecoration.none,
+//                ),
+//              ),
+//            ),
+//          )
+//        ],
+//      ),
     );
   }
 

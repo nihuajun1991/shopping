@@ -1,15 +1,15 @@
 class DetailBean {
   String api;
   String v;
-  List<String> ret;
+  //List<String> ret;
   Detail data;
 
-  DetailBean({this.api, this.v, this.ret, this.data});
+  DetailBean({this.api, this.v,  this.data});
 
   DetailBean.fromJson(Map<String, dynamic> json) {
     api = json['api'];
     v = json['v'];
-    ret = json['ret'].cast<String>();
+    //ret = json['ret'].cast<String>();
     data = json['data'] != null ? new Detail.fromJson(json['data']) : null;
   }
 
@@ -17,7 +17,7 @@ class DetailBean {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['api'] = this.api;
     data['v'] = this.v;
-    data['ret'] = this.ret;
+    //data['ret'] = this.ret;
     if (this.data != null) {
       data['data'] = this.data.toJson();
     }
@@ -29,9 +29,9 @@ class Detail {
   String sellerId;
   String pcDescContent;
   List<ItemProperties> itemProperties;
-  List<Null> anchors;
+  //List<Null> anchors;
 
-  Detail({this.sellerId, this.pcDescContent, this.itemProperties, this.anchors});
+  Detail({this.sellerId, this.pcDescContent, this.itemProperties});
 
   Detail.fromJson(Map<String, dynamic> json) {
     sellerId = json['sellerId'];
@@ -58,9 +58,9 @@ class Detail {
       data['itemProperties'] =
           this.itemProperties.map((v) => v.toJson()).toList();
     }
-    if (this.anchors != null) {
-      //data['anchors'] = this.anchors.map((v) => v.toJson()).toList();
-    }
+//    if (this.anchors != null) {
+//      //data['anchors'] = this.anchors.map((v) => v.toJson()).toList();
+//    }
     return data;
   }
 }
