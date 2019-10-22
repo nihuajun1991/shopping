@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shancheng/pagers/navigatorpagers/jd_categroy.dart';
 import 'package:shancheng/service/service_method.dart';
+import 'package:shancheng/view/jdsearchwidget.dart';
 import 'package:shancheng/view/loading_dialog.dart';
 import 'package:shancheng/view/myappbar.dart';
+import 'package:shancheng/view/pddsearchwidget.dart';
+import 'package:shancheng/view/searchappbar.dart';
 
 
 class JdPager extends StatefulWidget{
@@ -74,7 +77,7 @@ class _JDPagerState extends State with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     if (!tabloading&&tabs.length > 0) {
       return Scaffold(
-        appBar: MAppBar(
+        appBar: SearchAppBar(
           child: _Title(),
         ),
         body: _isLoadOk(),
@@ -138,46 +141,78 @@ class _JDPagerState extends State with SingleTickerProviderStateMixin{
 
 
   Widget _Title() {
-    return Container(
-      color: Colors.white,
-      height: ScreenUtil.getInstance().setHeight(60),
-      width: ScreenUtil.getInstance().setWidth(750),
-      child:Stack(
-        alignment: Alignment.center,
-        fit: StackFit.expand,
-        children: <Widget>[
+    return Column(
+      children: <Widget>[
+        Container(
+          color: Colors.white,
+          height: ScreenUtil.getInstance().setHeight(60),
+          width: ScreenUtil.getInstance().setWidth(750),
+          child: Stack(
+            alignment: Alignment.center,
+            fit: StackFit.expand,
+            children: <Widget>[
+              Positioned(
+                left: 0,
+                child: GestureDetector(
+                  child: Icon(
+                    Icons.navigate_before,
+                    size: 30,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              Center(
+                child: Text(
+                  '京东',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
 
 
-          Positioned(
+        ),
 
-            left: 0,
-            child:GestureDetector(
+        InkWell(
+
+            child:Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    new BoxShadow(
+                      color: Colors.black12,
+                      //阴影颜色
+                      blurRadius: 2.0, //阴影大小
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border(
+                    // top:BorderSide(width: 0.5, color: Colors.black) ,
+                    // bottom: BorderSide(width: 0.5, color: Colors.black),
+                  )),
+              margin: EdgeInsets.all(ScreenUtil().setHeight(5)),
+              alignment: Alignment.center,
               child: Icon(
-                Icons.navigate_before,
-                size: 30,
+                Icons.search,
+                color: Colors.pink,
+                size: ScreenUtil().setHeight(38),
               ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
+            ) ,
+            onTap: () {
+              print("点击搜索框");
+              showSearch(context: context, delegate: JdSearchBarDelegate());
+            }
 
+        ),
 
-          Center(
-            child: Text(
-              '京东',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-                decoration: TextDecoration.none,
-              ),
-            ),
-          ),
-        ],
-
-      ),
-
+      ],
     );
   }
 

@@ -385,7 +385,6 @@ class _JHSPagerState extends State<JHSPager>
         });
       }
 
-
 //      return ListView(
 //        physics: ScrollPhysics(),
 //        scrollDirection: Axis.horizontal,

@@ -102,6 +102,33 @@ Future getShanPinList({pager, cid}) async {
   }
 }
 
+
+
+
+Future tbsearch(String k,int pager) async {
+  try {
+    print('搜索.......');
+    Response response;
+    Dio dio = new Dio();
+      print(servicePath['homePagerContent']+"?k=${k}&page=${pager}");
+      response =
+      await dio.get(servicePath['homePagerContent'], queryParameters: {
+        "k": k,
+        'page':pager
+      });
+
+
+    if (response.statusCode == 200) {
+      //print(response.data);
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
 Future getTagBarList() async {
   try {
     //print('开始获取标题数据.......');
@@ -271,6 +298,27 @@ Future getPDDCategroy(String opt_id, String page) async {
   }
 }
 
+
+Future getPDDSearch(String keyword, String page) async {
+  try {
+    Response response;
+    Dio dio = new Dio();
+    print(servicePath['pddcategorygoods']+"?keyword=${keyword}&page=${page}");
+    response = await dio.get(servicePath["pddcategorygoods"],
+        queryParameters: {'keyword': keyword, 'page': page});
+    //print("response:${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
 Future getPDDDetail(String goods_ID) async {
   try {
     Response response;
@@ -391,6 +439,26 @@ Future getJDGoodsDetail(String skuIds) async {
   }
 }
 
+
+Future getJDGoodsSearch(String keyword) async {
+  try {
+    Response response;
+    Dio dio = new Dio();
+    print(servicePath['jdjd'] + "?keyword=$keyword");
+    response = await dio.get(servicePath["jdjd"] + "?keyword=$keyword");
+    //print("response:${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
 Future getJDGoodslink(String skuId, String couponUrl) async {
   try {
     Response response;
@@ -399,6 +467,47 @@ Future getJDGoodslink(String skuId, String couponUrl) async {
     response = await dio.post(servicePath["jdlink"],
         queryParameters: {'skuId': skuId, 'couponUrl': couponUrl});
     //print("response:${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
+
+Future getCategories() async {
+  try {
+    Response response;
+    Dio dio = new Dio();
+    print(servicePath['miaomiaoCategories'] );
+    response = await dio.post(servicePath["miaomiaoCategories"]);
+    //print("response:${response.statusCode}");
+    print("执行返回数据:${response}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
+Future getSwiper(int id) async {
+  try {
+    Response response;
+    Dio dio = new Dio();
+    print(servicePath['miaomiaoswiper']+id.toString());
+    response = await dio.post(servicePath["miaomiaoswiper"]+id.toString());
+    //print("response:${response.statusCode}");
+    print("执行返回数据:${response}");
 
     if (response.statusCode == 200) {
       //print("执行返回数据:${response.data}");

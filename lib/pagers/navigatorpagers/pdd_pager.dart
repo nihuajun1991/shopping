@@ -9,6 +9,8 @@ import 'package:shancheng/pagers/navigatorpagers/pdd_categroy.dart';
 import 'package:shancheng/service/service_method.dart';
 import 'package:shancheng/view/loading_dialog.dart';
 import 'package:shancheng/view/myappbar.dart';
+import 'package:shancheng/view/pddsearchwidget.dart';
+import 'package:shancheng/view/searchappbar.dart';
 
 
 class PDDPager extends StatefulWidget {
@@ -17,7 +19,7 @@ class PDDPager extends StatefulWidget {
 }
 
 class _PDDPagerState extends State<PDDPager>
-     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   String str = '';
   TabController controller; //tab控制器
   List<Widget> tabs = [];
@@ -31,7 +33,6 @@ class _PDDPagerState extends State<PDDPager>
     FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
     tabloading = true;
     _getPDDTab();
-
   }
 
   @override
@@ -64,42 +65,39 @@ class _PDDPagerState extends State<PDDPager>
   _getPDDTab() {
     getPDDTab().then((value) {
       var jsonstr = json.decode(value.toString());
-       bean = PDDBean.fromJson(jsonstr);
-      
-  
-      if(bean.goodsOptGetResponse?.goodsOptList?.length>0){
-      for( int i =0;i<bean.goodsOptGetResponse?.goodsOptList.length;i++){
-        tabs.add(new Tab(
-          text: bean.goodsOptGetResponse?.goodsOptList[i].optName,
-        ));
-      }
+      bean = PDDBean.fromJson(jsonstr);
+
+      if (bean.goodsOptGetResponse?.goodsOptList?.length > 0) {
+        for (int i = 0;
+            i < bean.goodsOptGetResponse?.goodsOptList.length;
+            i++) {
+          tabs.add(new Tab(
+            text: bean.goodsOptGetResponse?.goodsOptList[i].optName,
+          ));
+        }
       }
       controller = TabController(length: tabs.length, vsync: this);
       controller.addListener(() => _onTabChanged());
       setState(() {
         tabloading = false;
-
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!tabloading&&tabs.length > 0) {
+    if (!tabloading && tabs.length > 0) {
       return Scaffold(
-        appBar: MAppBar(
+        appBar: SearchAppBar(
           child: _Title(),
         ),
         body: _isLoadOk(),
       );
-
     } else {
       return Scaffold(
         backgroundColor: Colors.white,
-        body:LoadDialog(text: "加载中"),
+        body: LoadDialog(text: "加载中"),
       );
-        
-        
     }
   }
 
@@ -107,28 +105,30 @@ class _PDDPagerState extends State<PDDPager>
     if (tabs.length > 0) {
       //print("_isLoadOk${tabs.length}");
       return DefaultTabController(
-              length: tabs.length,
-              child: Scaffold(
-                  backgroundColor: Colors.white,
-                  appBar: TabBar(
-
-                    controller: controller,
-                    labelColor: Colors.pink,
-                    indicatorColor: Colors.pink,
-                    labelStyle: TextStyle(fontSize: ScreenUtil().setSp(22)),
-                    isScrollable: true,
-                    tabs: tabs,
-                    onTap: (int i) {
-                      // print(i);
-                    },
+        length: tabs.length,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: TabBar(
+            controller: controller,
+            labelColor: Colors.pink,
+            indicatorColor: Colors.pink,
+            labelStyle: TextStyle(fontSize: ScreenUtil().setSp(22)),
+            isScrollable: true,
+            tabs: tabs,
+            onTap: (int i) {
+              // print(i);
+            },
+          ),
+          body: new TabBarView(
+            controller: controller,
+            children: !tabloading
+                ? _getPager()
+                : Center(
+                    child: Text('加载中'),
                   ),
-                  body: new TabBarView(
-                    controller: controller,
-                    children: !tabloading?_getPager():Center(child: Text('加载中'),),
-                  ),
-                ),
+          ),
+        ),
       );
-
     }
 //    else {
 //      return Scaffold(
@@ -144,81 +144,85 @@ class _PDDPagerState extends State<PDDPager>
     List<Widget> pagers = [];
 
     for (int i = 0; i < tabs.length; i++) {
-      pagers.add(PDDCategoryPager(cid:bean.goodsOptGetResponse?.goodsOptList[i].optId));
+      pagers.add(PDDCategoryPager(
+          cid: bean.goodsOptGetResponse?.goodsOptList[i].optId));
     }
     return pagers;
   }
 
-
   Widget _Title() {
-    return Container(
-      color: Colors.white,
-      height: ScreenUtil.getInstance().setHeight(60),
-      width: ScreenUtil.getInstance().setWidth(750),
-      child:Stack(
-        alignment: Alignment.center,
-        fit: StackFit.expand,
-        children: <Widget>[
-
-
-          Positioned(
-
-            left: 0,
-            child:GestureDetector(
-            child: Icon(
-              Icons.navigate_before,
-              size: 30,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-            },
+    return Column(
+      children: <Widget>[
+        Container(
+          color: Colors.white,
+          height: ScreenUtil.getInstance().setHeight(60),
+          width: ScreenUtil.getInstance().setWidth(750),
+          child: Stack(
+            alignment: Alignment.center,
+            fit: StackFit.expand,
+            children: <Widget>[
+              Positioned(
+                left: 0,
+                child: GestureDetector(
+                  child: Icon(
+                    Icons.navigate_before,
+                    size: 30,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              Center(
+                child: Text(
+                  '拼多多',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+              ),
+            ],
           ),
-          ),
 
 
-    Center(
-      child: Text(
-        '拼多多',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 20,
-          color: Colors.black,
-          decoration: TextDecoration.none,
         ),
-      ),
+
+    InkWell(
+
+        child:Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                new BoxShadow(
+                  color: Colors.black12,
+                  //阴影颜色
+                  blurRadius: 2.0, //阴影大小
+                ),
+              ],
+              borderRadius: BorderRadius.circular(18),
+              border: Border(
+                // top:BorderSide(width: 0.5, color: Colors.black) ,
+                // bottom: BorderSide(width: 0.5, color: Colors.black),
+              )),
+          margin: EdgeInsets.all(ScreenUtil().setHeight(5)),
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.search,
+            color: Colors.pink,
+            size: ScreenUtil().setHeight(38),
+          ),
+        ) ,
+    onTap: () {
+    print("点击搜索框");
+    showSearch(context: context, delegate: PddSearchBarDelegate());
+    }
+
     ),
-        ],
 
-      ),
-
-//      Row(
-//        children: <Widget>[
-//          GestureDetector(
-//            child: Icon(
-//              Icons.navigate_before,
-//              size: 30,
-//            ),
-//            onTap: () {
-//              Navigator.pop(context);
-//            },
-//          ),
-//          Expanded(
-//            child: Center(
-//              child: Text(
-//                '拼多多',
-//                textAlign: TextAlign.center,
-//                style: TextStyle(
-//                  fontSize: 20,
-//                  color: Colors.black,
-//                  decoration: TextDecoration.none,
-//                ),
-//              ),
-//            ),
-//          )
-//        ],
-//      ),
+      ],
     );
   }
-
-
 }

@@ -31,5 +31,9 @@ const servicePath = {
    'jdhjk':'https://www.sumaitao.wang/index.php/api/jd/hjk',
    'jdjd':'https://www.sumaitao.wang/index.php/api/jd/jd?goodsquery',
   'jdlink':'https://www.sumaitao.wang/index.php/api/jd/getLink',
+  'miaomiaoCategories':'http://newapi.tkjidi.com/api/mms/getCategories',
+  'miaomiaoswiper':'http://newapi.tkjidi.com/api/mms/getCategoryRecommends/'
+
+
 };
 

@@ -5,8 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:shancheng/bean/tabbar_bean.dart';
 import 'package:shancheng/pagers/home_page.dart';
-import 'package:shancheng/pagers/tbsearch_pager.dart';
+
 import 'package:shancheng/service/service_method.dart';
+import 'package:shancheng/view/tbsearchwidget.dart';
 import '../view/loading_dialog.dart';
 import '../view/myappbar.dart';
 import 'category_page.dart';
@@ -59,11 +60,7 @@ class _GoodsPagerState extends State<GoodsPager>
         child: InkWell(
           onTap: () {
             print("点击搜索框");
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return TbSearch(
-
-              );
-            }));
+            showSearch(context: context, delegate: SearchBarDelegate());
           },
           child: Container(
             decoration: BoxDecoration(

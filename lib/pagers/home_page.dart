@@ -636,6 +636,15 @@ class TopNavigator extends StatelessWidget {
       navigatorList.removeRange(10, this.navigatorList.length);
     }
 
+    navigatorList.removeWhere((item)=>item['name']=='喵喵说');
+    
+//    navigatorList.forEach((item){
+//      if(item['name']=='喵喵说'){
+//        navigatorList.remove(item);
+//      }
+//    });
+
+
 //     return Scaffold(
 //
 //       body: GridView.count(
