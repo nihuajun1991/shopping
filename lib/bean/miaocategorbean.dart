@@ -1,13 +1,13 @@
 class MiaoCategor {
-  List<Data> data;
+  List<MiaoCategorData> data;
 
   MiaoCategor({this.data});
 
   MiaoCategor.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = new List<Data>();
+      data = new List<MiaoCategorData>();
       json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
+        data.add(new MiaoCategorData.fromJson(v));
       });
     }
   }
@@ -21,16 +21,16 @@ class MiaoCategor {
   }
 }
 
-class Data {
+class MiaoCategorData {
   int id;
   String name;
   String alias;
   String iconPath;
   String bannerPath;
 
-  Data({this.id, this.name, this.alias, this.iconPath, this.bannerPath});
+  MiaoCategorData({this.id, this.name, this.alias, this.iconPath, this.bannerPath});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  MiaoCategorData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     alias = json['alias'];

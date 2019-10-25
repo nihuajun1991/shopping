@@ -351,7 +351,7 @@ Future getPDDShare(String goods_ID) async {
     //print("response:${response.statusCode}");
 
     if (response.statusCode == 200) {
-      print("执行返回数据:${response.data}");
+      //print("执行返回数据:${response.data}");
       return response.data;
     } else {
       throw Exception('后端接口出现异常');
@@ -484,10 +484,10 @@ Future getCategories() async {
   try {
     Response response;
     Dio dio = new Dio();
-    print(servicePath['miaomiaoCategories'] );
+    //print(servicePath['miaomiaoCategories'] );
     response = await dio.post(servicePath["miaomiaoCategories"]);
     //print("response:${response.statusCode}");
-    print("执行返回数据:${response}");
+    //print("执行返回数据:${response}");
 
     if (response.statusCode == 200) {
       //print("执行返回数据:${response.data}");
@@ -504,8 +504,28 @@ Future getSwiper(int id) async {
   try {
     Response response;
     Dio dio = new Dio();
-    print(servicePath['miaomiaoswiper']+id.toString());
+    //print(servicePath['miaomiaoswiper']+id.toString());
     response = await dio.post(servicePath["miaomiaoswiper"]+id.toString());
+    //print("response:${response.statusCode}");
+    //print("执行返回数据:${response}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
+Future getMMArticle(int id,int page) async {
+  try {
+    Response response;
+    Dio dio = new Dio();
+    print(servicePath['miaomiaoarticlelist']+id.toString());
+    response = await dio.post(servicePath["miaomiaoarticlelist"],queryParameters: {'category_id':id,'page':page});
     //print("response:${response.statusCode}");
     print("执行返回数据:${response}");
 

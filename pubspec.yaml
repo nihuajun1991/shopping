@@ -33,6 +33,9 @@ dependencies:
   flutter_statusbarcolor: ^0.2.1
   url_launcher: ^3.0.3
   flutter_webview_plugin: ^0.3.7
+  chewie: 0.9.8+1
+  video_player: ^0.10.0+2
+  auto_orientation: ^0.0.2
 
 
 dev_dependencies:
@@ -81,3 +84,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+  assets:
+      - assets/love.png
+      - assets/yanjing.png
