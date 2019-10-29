@@ -31,8 +31,9 @@ class _VideoAppState extends State<VideoApp> {
     _chewieController = ChewieController(
           videoPlayerController: _videoPlayerController1,
         aspectRatio: 16 / 9,
-        autoPlay: false,
+        autoPlay: true,
         looping: false,
+     // fullScreenByDefault:true,
         placeholder: new Container(
           color: Colors.grey,
         ),

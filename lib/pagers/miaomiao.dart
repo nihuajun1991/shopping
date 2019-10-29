@@ -10,6 +10,7 @@ import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:flutter_easyrefresh/phoenix_footer.dart';
 import 'package:flutter_easyrefresh/phoenix_header.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shancheng/bean/miaocategorbean.dart';
 import 'package:shancheng/bean/miaomiaoarticle.dart';
@@ -54,10 +55,32 @@ class MiaoPageState extends State<MiaoPage>
       alpha = 1;
     }
     setState(() {
+      if (alpha <=0) {
+        //changeStatusColor(Colors.white);
+      } else if (alpha >=1) {
+        //changeStatusColor(Colors.black);
+      }
       appBarAlpha = alpha;
     });
     print(appBarAlpha);
   }
+
+//  changeStatusColor(Color color) async {
+//    try {
+//      await FlutterStatusbarcolor.setStatusBarColor(color);
+//      if (useWhiteForeground(color)) {
+//        FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+//        //FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
+//
+//      } else {
+//        FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+//        //FlutterStatusbarcolor.setNavigationBarWhiteForeground(false);
+//
+//      }
+//    } catch (e) {
+//      debugPrint(e.toString());
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -458,7 +481,7 @@ class MiaoPageState extends State<MiaoPage>
               borderRadius: BorderRadius.circular(10),
             ),
             child: (data.videoPath != null && data.videoPath.length > 0)
-                ? Icon(Icons.video_label)
+                ? Icon(Icons.video_library)
                 : Text(''),
           ),
           Container(

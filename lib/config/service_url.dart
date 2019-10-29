@@ -33,7 +33,7 @@ const servicePath = {
   'jdlink':'https://www.sumaitao.wang/index.php/api/jd/getLink',
   'miaomiaoCategories':'http://newapi.tkjidi.com/api/mms/getCategories',
   'miaomiaoswiper':'http://newapi.tkjidi.com/api/mms/getCategoryRecommends/',
-  'miaomiaoarticlelist':'http://newapi.tkjidi.com/api/mms/getMMArticleList'
-
+  'miaomiaoarticlelist':'http://newapi.tkjidi.com/api/mms/getMMArticleList',
+  'miaomiaoarticleinfo':'http://newapi.tkjidi.com/api/mms/getMMArticleInfo/',
 };
 

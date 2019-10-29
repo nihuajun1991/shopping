@@ -524,8 +524,28 @@ Future getMMArticle(int id,int page) async {
   try {
     Response response;
     Dio dio = new Dio();
-    print(servicePath['miaomiaoarticlelist']+id.toString());
+    //print(servicePath['miaomiaoarticlelist']+id.toString());
     response = await dio.post(servicePath["miaomiaoarticlelist"],queryParameters: {'category_id':id,'page':page});
+    //print("response:${response.statusCode}");
+   // print("执行返回数据:${response}");
+
+    if (response.statusCode == 200) {
+      //print("执行返回数据:${response.data}");
+      return response;
+    } else {
+      throw Exception('后端接口出现异常');
+    }
+  } catch (e) {
+    return print(e);
+  }
+}
+
+Future getMMArticleInfo(int from_id) async {
+  try {
+    Response response;
+    Dio dio = new Dio();
+    print(servicePath['miaomiaoarticleinfo']+from_id.toString());
+    response = await dio.post(servicePath["miaomiaoarticleinfo"]+from_id.toString());
     //print("response:${response.statusCode}");
     print("执行返回数据:${response}");
 
